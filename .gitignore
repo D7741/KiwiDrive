@@ -1,0 +1,91 @@
+# ========================
+# Frontend (React + Vite/TS)
+# ========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/coverage/
+frontend/.vite/
+frontend/pnpm-lock.yaml
+frontend/package-lock.json
+frontend/yarn.lock
+
+# ========================
+# Backend (C# .NET)
+# ========================
+bin/
+obj/
+*.user
+appsettings.Development.json
+appsettings.User.json
+appsettings.*.User.json
+.env
+*.db
+*.db-shm
+*.db-wal
+backend/bin/
+backend/obj/
+backend/*.user
+backend/appsettings.Development.json
+backend/appsettings.User.json
+backend/appsettings.*.User.json
+backend/.env
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# ========================
+# Docker
+# ========================
+.dockerignore
+docker-compose.override.yml
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+frontend/logs/
+backend/logs/
+
+# ========================
+# Test outputs
+# ========================
+frontend/coverage/
+frontend/.nyc_output/
+backend/TestResults/
+backend/coverage/
+*.trx
+*.coverage
+
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vs/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# ========================
+# OS files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Specs folder (Temp folder)
+# ========================
+specs/*.tmp
+specs/*.bak
+specs/.DS_Store
