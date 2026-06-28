@@ -31,6 +31,7 @@ appsettings.*.User.json
 backend/bin/
 backend/obj/
 backend/*.user
+backend/appsettings.json
 backend/appsettings.Development.json
 backend/appsettings.User.json
 backend/appsettings.*.User.json
@@ -38,6 +39,7 @@ backend/.env
 backend/*.db
 backend/*.db-shm
 backend/*.db-wal
+
 
 # ========================
 # Docker
