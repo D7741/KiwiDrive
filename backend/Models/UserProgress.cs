@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace KiwiDrive.Models;
 
 public class UserProgress
 {
+    [Key]
     public int Id { get; set; }
     public int UserId { get; set; }
     public int CategoryId { get; set; }

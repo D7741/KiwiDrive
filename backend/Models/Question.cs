@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace KiwiDrive.Models;
 
 public class Question
 {
+    [Key]
     public int Id { get; set; }
     public string Text { get; set; } = string.Empty;
     public string OptionA { get; set; } = string.Empty;
