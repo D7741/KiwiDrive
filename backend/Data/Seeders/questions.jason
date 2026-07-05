@@ -1,0 +1,102 @@
+[
+  {
+    "text": "What is the default speed limit in an urban area in New Zealand?",
+    "optionA": "50 km/h",
+    "optionB": "60 km/h",
+    "optionC": "80 km/h",
+    "optionD": "100 km/h",
+    "correctAnswer": "A",
+    "explanation": "The default urban speed limit in NZ is 50 km/h unless otherwise signed.",
+    "categoryId": 2
+  },
+  {
+    "text": "What is the open road speed limit in New Zealand?",
+    "optionA": "90 km/h",
+    "optionB": "100 km/h",
+    "optionC": "110 km/h",
+    "optionD": "120 km/h",
+    "correctAnswer": "B",
+    "explanation": "The default open road speed limit in NZ is 100 km/h.",
+    "categoryId": 2
+  },
+  {
+    "text": "What does a red traffic light mean?",
+    "optionA": "Slow down",
+    "optionB": "Stop if safe to do so",
+    "optionC": "Stop and wait",
+    "optionD": "Give way to pedestrians",
+    "correctAnswer": "C",
+    "explanation": "A red light means you must stop and wait until the light turns green.",
+    "categoryId": 1
+  },
+  {
+    "text": "What does a yellow traffic light mean?",
+    "optionA": "Speed up to get through",
+    "optionB": "Stop if it is safe to do so",
+    "optionC": "Slow down and prepare to stop",
+    "optionD": "Give way to oncoming traffic",
+    "correctAnswer": "B",
+    "explanation": "A yellow light means stop if it is safe to do so. Do not speed up.",
+    "categoryId": 1
+  },
+  {
+    "text": "At an uncontrolled intersection, who must give way?",
+    "optionA": "The vehicle on the left",
+    "optionB": "The vehicle on the right",
+    "optionC": "The vehicle travelling straight",
+    "optionD": "The vehicle turning right must give way to oncoming traffic",
+    "correctAnswer": "D",
+    "explanation": "When turning right, you must give way to oncoming traffic and vehicles turning left.",
+    "categoryId": 3
+  },
+  {
+    "text": "What is the legal blood alcohol limit for drivers under 20 in NZ?",
+    "optionA": "Zero",
+    "optionB": "50mg per 100ml",
+    "optionC": "80mg per 100ml",
+    "optionD": "30mg per 100ml",
+    "correctAnswer": "A",
+    "explanation": "Drivers under 20 must have zero alcohol in their blood or breath.",
+    "categoryId": 5
+  },
+  {
+    "text": "How far from a fire hydrant must you park?",
+    "optionA": "1 metre",
+    "optionB": "3 metres",
+    "optionC": "5 metres",
+    "optionD": "6 metres",
+    "correctAnswer": "C",
+    "explanation": "You must not park within 6 metres of a fire hydrant.",
+    "categoryId": 4
+  },
+  {
+    "text": "When driving at night, when should you use your headlights?",
+    "optionA": "Only when it is completely dark",
+    "optionB": "From 30 minutes after sunset to 30 minutes before sunrise",
+    "optionC": "Only in rural areas",
+    "optionD": "Only when other cars are present",
+    "correctAnswer": "B",
+    "explanation": "You must use headlights from 30 minutes after sunset to 30 minutes before sunrise.",
+    "categoryId": 6
+  },
+  {
+    "text": "When should you use high beam headlights at night?",
+    "optionA": "Always at night",
+    "optionB": "Only in the city",
+    "optionC": "When no oncoming vehicles are within 100 metres",
+    "optionD": "When travelling above 80 km/h",
+    "correctAnswer": "C",
+    "explanation": "Use high beam when no oncoming vehicle is within 100 metres to avoid blinding other drivers.",
+    "categoryId": 6
+  },
+  {
+    "text": "What should you do if you feel drowsy while driving at night?",
+    "optionA": "Open the window and keep driving",
+    "optionB": "Turn up the music",
+    "optionC": "Pull over safely and rest",
+    "optionD": "Drive faster to reach your destination sooner",
+    "correctAnswer": "C",
+    "explanation": "If you feel drowsy, pull over safely and rest. Fatigue is a major cause of crashes.",
+    "categoryId": 6
+  }
+]
