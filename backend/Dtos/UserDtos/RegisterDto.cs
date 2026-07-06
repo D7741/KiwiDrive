@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace KiwiDrive.DTOs
+namespace KiwiDrive.Dtos
 {
-    public class RegisterDtos
+    public class RegisterDto
     {
         [Required]
         public string Email {get; set;} = string.Empty;
@@ -13,6 +13,6 @@ namespace KiwiDrive.DTOs
 
         [Required]
         [MinLength(6)]
-        public string PasswordHash {get; set;} = string.Empty;
+        public string Password{get; set;} = string.Empty;
     }
 }
