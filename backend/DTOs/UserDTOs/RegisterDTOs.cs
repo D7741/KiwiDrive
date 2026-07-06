@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KiwiDrive.DTOs
 {
-    public class RegisterDTOs
+    public class RegisterDtos
     {
         [Required]
         public string Email {get; set;} = string.Empty;
