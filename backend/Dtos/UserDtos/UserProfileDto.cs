@@ -1,4 +1,4 @@
-namespace KiwiDrive.Dtos
+namespace KiwiDrive.Dtos.UserDtos
 {
     public class UserProfileDto
     {

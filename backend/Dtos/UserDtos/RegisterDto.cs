@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace KiwiDrive.Dtos
+namespace KiwiDrive.Dtos.UserDtos
 {
     public class RegisterDto
     {
