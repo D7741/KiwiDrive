@@ -14,6 +14,12 @@ namespace KiwiDrive.Repository.Interfaces
 
         Task<List<Question>> GetAllQuestionsAsync();
 
+        Task<bool> HasUserAchievementAsync(int userId, int achievementId);
+
+        Task UnlockAchievementAsync(int userId, int achievementId);
+
+        Task<List<Achievement>> GetUserAchievementsAsync(int userId);
+
         Task<Question> UpdateQuestionAsync(Question question);
 
         Task<bool> DeleteQuestionAsync(int id);
