@@ -4,7 +4,7 @@ namespace KiwiDrive.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> CreateUserAsync(User user);
+        Task<User?> CreateUserAsync(User user);
 
         Task<User?> GetUserByIdAsync(int id);
 
@@ -14,7 +14,7 @@ namespace KiwiDrive.Repository.Interfaces
 
         Task<List<User>> GetAllUsersAsync();
 
-        Task<User> UpdateUserAsync(User user);
+        Task<User?> UpdateUserAsync(User user);
 
         Task UpdateUserXPAsync(int id, int xp);
 
