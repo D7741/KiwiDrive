@@ -12,7 +12,7 @@ namespace KiwiDrive.Repository.Interfaces
 
         Task<List<User>> GetLeaderboardAsync();
 
-        Task<List<User>> GetAllUserAsync();
+        Task<List<User>> GetAllUsersAsync();
 
         Task<User> UpdateUserAsync(User user);
 
