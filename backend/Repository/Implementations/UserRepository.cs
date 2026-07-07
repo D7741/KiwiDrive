@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KiwiDrive.Repository.Implementations
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _context;
 
@@ -13,21 +13,18 @@ namespace KiwiDrive.Repository.Implementations
         {
             _context = context;
         }
-        
+
         public async Task<User?> CreateUserAsync(User user)
         {
             if (user == null)
-            {
                 throw new ArgumentNullException(nameof(user), "User cannot be null.");
-            }
-            // Check Email
-            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+
+            var existingUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == user.Email);
 
             if (existingUser != null)
-            {
                 throw new InvalidOperationException($"User with email '{user.Email}' already exists.");
-            }
-            
+
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user;
@@ -35,70 +32,43 @@ namespace KiwiDrive.Repository.Implementations
 
         public async Task<User?> GetUserByIdAsync(int id)
         {
-            if (id == default)
-            {
+            if (id <= 0)
                 throw new ArgumentException($"User ID '{id}' is invalid.", nameof(id));
-            }
 
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                throw new KeyNotFoundException($"User with ID '{id}' does not exist.");
-            }
-
-            return user;
+            return await _context.Users.FindAsync(id);
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            if (email == null)
-            {
-                throw new ArgumentNullException($"Email cannot be null");
-            }
-            
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (string.IsNullOrEmpty(email))
+                throw new ArgumentNullException(nameof(email), "Email cannot be null.");
 
-            if (user == null)
-            {
-                throw new KeyNotFoundException($"User with Email '{email}' does not exist.");
-            }
-
-            return user;
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task<List<User>> GetLeaderboardAsync()
         {
-            var leaderboard = await _context.Users
+            return await _context.Users
                 .OrderByDescending(u => u.XP)
                 .ThenBy(u => u.Username)
                 .Take(100)
                 .ToListAsync();
-
-            return leaderboard;
         }
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            var users = await _context.Users
-                .ToListAsync();
-            
-            return users;
+            return await _context.Users.ToListAsync();
         }
 
         public async Task<User?> UpdateUserAsync(User user)
         {
             if (user == null)
-            {
                 throw new ArgumentNullException(nameof(user), "User cannot be null.");
-            }
-            
-            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
 
-            if (existingUser == null)
-            {
-                throw new ArgumentNullException($"pls register first");
-            }
+            var existingUser = await _context.Users.FindAsync(user.Id);
+
+            if (existingUser == null) return null;
 
             existingUser.Username = user.Username;
             existingUser.Email = user.Email;
@@ -107,23 +77,16 @@ namespace KiwiDrive.Repository.Implementations
             existingUser.Streak = user.Streak;
 
             await _context.SaveChangesAsync();
-            return await GetUserByIdAsync(existingUser.Id);
-            
+            return existingUser;
         }
 
         public async Task UpdateUserXPAsync(int id, int xp)
         {
-            if (id == default)
-            {
+            if (id <= 0)
                 throw new ArgumentException($"User ID '{id}' is invalid.", nameof(id));
-            }
 
             var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user), "User cannot be null.");
-            }
+            if (user == null) return;
 
             user.XP = xp;
             await _context.SaveChangesAsync();
@@ -131,17 +94,11 @@ namespace KiwiDrive.Repository.Implementations
 
         public async Task UpdateStreakAsync(int id, int streak)
         {
-            if (id == default)
-            {
+            if (id <= 0)
                 throw new ArgumentException($"User ID '{id}' is invalid.", nameof(id));
-            }
 
             var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user), "User cannot be null.");
-            }
+            if (user == null) return;
 
             user.Streak = streak;
             await _context.SaveChangesAsync();
@@ -149,24 +106,14 @@ namespace KiwiDrive.Repository.Implementations
 
         public async Task<bool> DeleteUserAsync(int id)
         {
-            if (id == default)
-            {
-                throw new ArgumentException($"User ID '{id}' is invalid.", nameof(id));
-            }
+            if (id <= 0) return false;
 
             var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user), "User cannot be null.");
-            }
+            if (user == null) return false;
 
             _context.Users.Remove(user);
-
             await _context.SaveChangesAsync();
             return true;
         }
-
-
     }
 }
