@@ -1,6 +1,6 @@
 using KiwiDrive.Models;
 
-namespace KiwiDrive.Repository.Interface
+namespace KiwiDrive.Repository.Interfaces
 {
     public interface IUserRepository
     {
