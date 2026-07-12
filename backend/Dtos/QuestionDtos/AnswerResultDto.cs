@@ -1,6 +1,6 @@
 namespace KiwiDrive.Dtos.QuestionDtos
 {
-    public class AnswerResuleDto
+    public class AnswerResultDto
     {
         public bool IsCorrect {get; set;}
 
