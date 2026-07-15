@@ -43,6 +43,7 @@ namespace KiwiDrive.Repository.Implementations
         public async Task<Question?> GetQuestionRandomAsync()
         {
             return await _context.Questions
+                .Include(q => q.Category) 
                 .OrderBy(q => Guid.NewGuid())
                 .FirstOrDefaultAsync();
         }
@@ -53,13 +54,16 @@ namespace KiwiDrive.Repository.Implementations
                 throw new ArgumentException($"Category ID '{categoryId}' is invalid.", nameof(categoryId));
             
             return await _context.Questions
+                .Include(q => q.Category) 
                 .Where(q => q.CategoryId == categoryId)
                 .ToListAsync();
         }
 
         public async Task<List<Question>> GetAllQuestionsAsync()
         {
-            return await _context.Questions.ToListAsync();
+            return await _context.Questions
+                .Include(q => q.Category)
+                .ToListAsync();
         }
 
         public async Task<Question?> UpdateQuestionAsync(Question question)
