@@ -17,15 +17,17 @@ namespace KiwiDrive.Controllers
         }
         
 
-        // GET    /api/users/{id}
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserProfile(int id)
+        // GET
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetUserProfile()
         {
             try
             {
-                var user = await _userService.GetUserProfileAsync(id);
+                var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+
+                var user = await _userService.GetUserProfileAsync(userId);
                 if (user == null)
-                    return NotFound(new { error = $"User with ID '{id}' does not exist." });
+                    return NotFound(new { error = $"User with ID '{userId}' does not exist." });
 
                 return Ok(user);
             }
@@ -35,38 +37,34 @@ namespace KiwiDrive.Controllers
             }
         }
 
-        // PUT    /api/users/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdateDto dto)
+        // PUT
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto dto)
         {
             try
             {
-                var user = await _userService.UpdateUserAsync(id, dto);
+                var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+                var user = await _userService.UpdateUserAsync(userId, dto);
                 if (user == null)
-                    return NotFound(new { error = $"User with ID '{id}' does not exist." });
-
+                    return NotFound(new { error = "User not found." });
                 return Ok(user);
             }
             catch (ArgumentException ex)
             {
                 return BadRequest(new { error = ex.Message });
             }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { error = ex.Message });
-            }
         }
 
-        // DELETE /api/users/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        // DELETE
+        [HttpDelete("profile")]
+        public async Task<IActionResult> DeleteUser()
         {
             try
             {
-                var result = await _userService.DeleteUserAsync(id);
+                var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+                var result = await _userService.DeleteUserAsync(userId);
                 if (!result)
-                    return NotFound(new { error = $"User with ID '{id}' does not exist." });
-                
+                    return NotFound(new { error = "User not found." });
                 return NoContent();
             }
             catch (ArgumentException ex)
