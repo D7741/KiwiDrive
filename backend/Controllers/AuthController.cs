@@ -15,7 +15,7 @@ namespace KiwiDrive.Controllers
             _userService = userService;
         }
 
-        // Register
+        // POST /api/auth/register
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
@@ -38,7 +38,7 @@ namespace KiwiDrive.Controllers
             }
         }
 
-        // Login
+        // POST /api/auth/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
