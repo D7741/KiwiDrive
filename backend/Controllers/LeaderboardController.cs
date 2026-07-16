@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using KiwiDrive.Services.Interfaces;
-using KiwiDrive.Dtos.LeaderboardDtos;
 
 namespace KiwiDrive.Controllers
 {

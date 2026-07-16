@@ -107,6 +107,69 @@ namespace KiwiDrive.Services.Implementations
             };
         }
 
+        public async Task<QuestionDto> CreateQuestionAsync(CreateQuestionDto dto)
+        {
+            var question = new Question
+            {
+                Text = dto.Text,
+                OptionA = dto.OptionA,
+                OptionB = dto.OptionB,
+                OptionC = dto.OptionC,
+                OptionD = dto.OptionD,
+                CorrectAnswer = dto.CorrectAnswer,
+                Explanation = dto.Explanation,
+                CategoryId = dto.CategoryId
+            };
+
+            var created = await _questionRepository.CreateQuestionAsync(question);
+
+            return new QuestionDto
+            {
+                Id = created.Id,
+                Text = created.Text,
+                OptionA = created.OptionA,
+                OptionB = created.OptionB,
+                OptionC = created.OptionC,
+                OptionD = created.OptionD,
+                CategoryName = created.Category?.Name ?? string.Empty
+            };
+        }
+
+        public async Task<QuestionDto?> UpdateQuestionAsync(int id, CreateQuestionDto dto)
+        {
+            var existingQuestion = await _questionRepository.GetQuestionByIdAsync(id);
+            if (existingQuestion == null) return null;
+
+            existingQuestion.Text = dto.Text;
+            existingQuestion.OptionA = dto.OptionA;
+            existingQuestion.OptionB = dto.OptionB;
+            existingQuestion.OptionC = dto.OptionC;
+            existingQuestion.OptionD = dto.OptionD;
+            existingQuestion.CorrectAnswer = dto.CorrectAnswer;
+            existingQuestion.Explanation = dto.Explanation;
+            existingQuestion.CategoryId = dto.CategoryId;
+
+            var updated = await _questionRepository.UpdateQuestionAsync(existingQuestion);
+            if (updated == null) return null;
+
+            return new QuestionDto
+            {
+                Id = updated.Id,
+                Text = updated.Text,
+                OptionA = updated.OptionA,
+                OptionB = updated.OptionB,
+                OptionC = updated.OptionC,
+                OptionD = updated.OptionD,
+                CategoryName = updated.Category?.Name ?? string.Empty
+            };
+        }
+
+        public async Task<bool> DeleteQuestionAsync(int id)
+        {
+            return await _questionRepository.DeleteQuestionAsync(id);
+        }
+
+
         // private helper
         private async Task CheckAndUnlockAchievementsAsync(int userId, int currentXP)
         {
