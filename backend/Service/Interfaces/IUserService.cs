@@ -1,4 +1,5 @@
 using KiwiDrive.Dtos.UserDtos;
+using KiwiDrive.Dtos.LeaderboardDtos;
 
 namespace KiwiDrive.Services.Interfaces
 {
@@ -9,5 +10,9 @@ namespace KiwiDrive.Services.Interfaces
         Task<UserProfileDto?> GetUserProfileAsync(int id);
         Task<UserProfileDto?> UpdateUserAsync(int id, UserUpdateDto dto);
         Task<bool> DeleteUserAsync(int id);
+
+        // Leaderboard
+        Task<List<LeaderboardEntryDto>> GetLeaderboardAsync();
+
     }
 }

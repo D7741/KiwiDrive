@@ -2,6 +2,7 @@ using System.Text;
 using KiwiDrive.Models;
 using System.Security.Claims;
 using KiwiDrive.Dtos.UserDtos;
+using KiwiDrive.Dtos.LeaderboardDtos;
 using KiwiDrive.Repository.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using KiwiDrive.Services.Interfaces;
@@ -96,6 +97,22 @@ namespace KiwiDrive.Services.Implementations
             return await _userRepository.DeleteUserAsync(id);
         }
 
+        // Leaderboard
+        public async Task<List<LeaderboardEntryDto>> GetLeaderboardAsync()
+        {
+            var users = await _userRepository.GetLeaderboardAsync();
+
+            return users.Select((u, index) => new LeaderboardEntryDto
+            {
+                Rank = index + 1,
+                Username = u.Username,
+                XP = u.XP,
+                Level = u.Level,
+                Streak = u.Streak
+            }).ToList();
+        }
+
+
 
         // private helper
 
@@ -134,5 +151,6 @@ namespace KiwiDrive.Services.Implementations
             Level = user.Level,
             Streak = user.Streak
         };
+
     } 
 }
