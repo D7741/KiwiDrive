@@ -9,6 +9,7 @@ using KiwiDrive.Repository.Interfaces;
 using KiwiDrive.Repository.Implementations;
 using KiwiDrive.Services.Interfaces;
 using KiwiDrive.Services.Implementations;
+using KiwiDrive.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,16 @@ builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") // React 默认端口
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -52,11 +63,14 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
     await QuestionSeeder.SeedAsync(db);
 }
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseCors("AllowFrontend");
 
 app.MapOpenApi();
 app.MapScalarApiReference();
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
