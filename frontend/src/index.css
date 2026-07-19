@@ -1,2 +1,35 @@
 @import "tailwindcss";
 
+
+@theme {
+  --font-heading: "Baloo 2", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --color-kiwi-green: oklch(58% 0.16 152);
+  --color-kiwi-green-dark: oklch(42% 0.13 152);
+  --color-kiwi-green-light: oklch(93% 0.05 152);
+
+  --color-sky-blue: oklch(62% 0.17 255);
+  --color-sky-blue-dark: oklch(48% 0.15 255);
+  --color-sky-blue-light: oklch(90% 0.05 255);
+
+  --color-kiwifruit-orange: oklch(68% 0.19 45);
+  --color-kiwifruit-orange-light: oklch(93% 0.07 45);
+
+  --color-alert-red: oklch(58% 0.19 25);
+  --color-alert-red-light: oklch(93% 0.06 25);
+
+  --color-cream: oklch(97% 0.015 95);
+  --color-card: oklch(99% 0.005 95);
+  --color-border-subtle: oklch(88% 0.02 95);
+
+  --color-ink: oklch(25% 0.03 260);
+  --color-ink-muted: oklch(50% 0.02 260);
+  --color-ink-light: oklch(55% 0.02 260);
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  font-family: var(--font-body);
+}
