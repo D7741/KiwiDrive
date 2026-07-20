@@ -98,5 +98,505 @@
     "correctAnswer": "C",
     "explanation": "If you feel drowsy, pull over safely and rest. Fatigue is a major cause of crashes.",
     "categoryId": 6
+  },
+  {
+    "text": "What shape is a 'Give Way' sign in New Zealand?",
+    "optionA": "Octagon",
+    "optionB": "Downward-pointing (inverted) triangle",
+    "optionC": "Diamond",
+    "optionD": "Circle",
+    "correctAnswer": "B",
+    "explanation": "Give Way signs in NZ are an inverted (downward-pointing) triangle with a red border.",
+    "categoryId": 1
+  },
+  {
+    "text": "What shape and colour is a Stop sign?",
+    "optionA": "A yellow diamond",
+    "optionB": "A blue circle",
+    "optionC": "A red octagon",
+    "optionD": "A green rectangle",
+    "correctAnswer": "C",
+    "explanation": "Stop signs are red octagons. You must come to a complete stop, even if no other traffic is present.",
+    "categoryId": 1
+  },
+  {
+    "text": "What does a round sign with a red border and a red diagonal line through it generally indicate?",
+    "optionA": "A warning of a hazard ahead",
+    "optionB": "A prohibition, such as no entry",
+    "optionC": "A mandatory direction you must follow",
+    "optionD": "Information about services ahead",
+    "correctAnswer": "B",
+    "explanation": "Red circular signs with a diagonal line indicate something is prohibited, such as no entry or no stopping.",
+    "categoryId": 1
+  },
+  {
+    "text": "What do round blue signs with white symbols generally mean?",
+    "optionA": "They give general information only",
+    "optionB": "They warn of a hazard ahead",
+    "optionC": "They show a mandatory instruction you must follow",
+    "optionD": "They mark a school zone",
+    "correctAnswer": "C",
+    "explanation": "Round blue signs give mandatory instructions, such as a compulsory turn or a minimum speed, that you must obey.",
+    "categoryId": 1
+  },
+  {
+    "text": "What shape are most warning signs, such as those for bends or roadworks?",
+    "optionA": "Yellow diamond",
+    "optionB": "Red octagon",
+    "optionC": "Blue circle",
+    "optionD": "White rectangle",
+    "correctAnswer": "A",
+    "explanation": "Warning signs alerting drivers to hazards ahead are typically yellow, diamond-shaped signs.",
+    "categoryId": 1
+  },
+  {
+    "text": "What does an 'LSZ' sign (Limited Speed Zone) mean?",
+    "optionA": "The speed limit no longer applies",
+    "optionB": "You may drive up to the posted limit but must slow down further if conditions require",
+    "optionC": "You must always drive at exactly the posted limit",
+    "optionD": "The road ahead is closed",
+    "correctAnswer": "B",
+    "explanation": "An LSZ sign means the speed limit shown is a maximum only — you must reduce your speed further if road, weather, or traffic conditions require it.",
+    "categoryId": 1
+  },
+  {
+    "text": "What does a sign with a yellow school-children symbol and a variable speed display usually indicate?",
+    "optionA": "A permanent 100 km/h zone",
+    "optionB": "A school speed zone, often 40 km/h during set times",
+    "optionC": "A cycle-only lane",
+    "optionD": "A pedestrian crossing with no speed restriction",
+    "correctAnswer": "B",
+    "explanation": "School zone signs indicate a reduced speed limit, commonly 40 km/h, that applies during the times shown or when the sign is flashing.",
+    "categoryId": 1
+  },
+  {
+    "text": "At a railway level crossing with a crossbuck sign but no lights or bells, what must you do?",
+    "optionA": "Proceed without slowing if no train is visible",
+    "optionB": "Sound your horn and continue",
+    "optionC": "Slow down, look both ways, and give way to any train",
+    "optionD": "Stop only if another vehicle is also crossing",
+    "correctAnswer": "C",
+    "explanation": "At a railway crossing marked only with a crossbuck sign, you must slow down, check both directions, and give way to any approaching train.",
+    "categoryId": 1
+  },
+  {
+    "text": "What is the speed limit when passing a stopped school bus with its warning lights flashing (from either direction, without a median strip)?",
+    "optionA": "20 km/h",
+    "optionB": "30 km/h",
+    "optionC": "40 km/h",
+    "optionD": "50 km/h",
+    "correctAnswer": "A",
+    "explanation": "You must slow to 20 km/h when passing a school bus that has stopped with its flashing lights on, from either direction, unless separated by a median strip.",
+    "categoryId": 2
+  },
+  {
+    "text": "What is the speed limit for a vehicle towing a trailer on the open road, unless a lower limit is signed?",
+    "optionA": "70 km/h",
+    "optionB": "80 km/h",
+    "optionC": "90 km/h",
+    "optionD": "100 km/h",
+    "correctAnswer": "C",
+    "explanation": "A vehicle and trailer combination must not exceed 90 km/h, even where the open road limit of 100 km/h applies.",
+    "categoryId": 2
+  },
+  {
+    "text": "In a Limited Speed Zone (LSZ), what does the posted speed limit represent?",
+    "optionA": "The speed you must always drive at",
+    "optionB": "The minimum speed allowed",
+    "optionC": "A maximum that you must reduce below if conditions require",
+    "optionD": "A recommendation only, with no legal force",
+    "correctAnswer": "C",
+    "explanation": "In an LSZ, the posted limit is a maximum — drivers must still slow down further if the road, weather, or traffic conditions make the posted speed unsafe.",
+    "categoryId": 2
+  },
+  {
+    "text": "If there is no speed limit sign displayed on a rural road, what speed limit applies by default?",
+    "optionA": "80 km/h",
+    "optionB": "90 km/h",
+    "optionC": "100 km/h",
+    "optionD": "110 km/h",
+    "correctAnswer": "C",
+    "explanation": "Where no sign is displayed, the default open road speed limit of 100 km/h applies.",
+    "categoryId": 2
+  },
+  {
+    "text": "When driving through a temporary roadworks area with a lower speed limit sign posted, what must you do?",
+    "optionA": "Ignore it if no workers are visible",
+    "optionB": "Obey the temporary speed limit shown",
+    "optionC": "Only slow down if other cars are slowing",
+    "optionD": "Drive at the normal open road limit",
+    "correctAnswer": "B",
+    "explanation": "Temporary speed limits at roadworks are legally enforceable and must be obeyed, whether or not workers are visible at the time.",
+    "categoryId": 2
+  },
+  {
+    "text": "What is the speed limit in a designated shared/pedestrian zone where a 10 km/h sign is posted?",
+    "optionA": "10 km/h",
+    "optionB": "20 km/h",
+    "optionC": "30 km/h",
+    "optionD": "40 km/h",
+    "correctAnswer": "A",
+    "explanation": "Shared zones designed for pedestrians and vehicles together are often signed at 10 km/h to keep pedestrians safe.",
+    "categoryId": 2
+  },
+  {
+    "text": "Is it an offence to drive unreasonably slowly and hold up other traffic without good reason?",
+    "optionA": "No, you can drive as slowly as you like",
+    "optionB": "Yes, driving unreasonably slowly and obstructing traffic is an offence",
+    "optionC": "Only on motorways",
+    "optionD": "Only if you are towing a trailer",
+    "correctAnswer": "B",
+    "explanation": "Drivers must not unreasonably obstruct the movement of other traffic by driving unnecessarily slowly.",
+    "categoryId": 2
+  },
+  {
+    "text": "What is a permanent variable school speed zone speed limit typically set to during school pick-up and drop-off times?",
+    "optionA": "30 km/h",
+    "optionB": "40 km/h",
+    "optionC": "50 km/h",
+    "optionD": "60 km/h",
+    "correctAnswer": "B",
+    "explanation": "Variable school speed zones commonly reduce the limit to 40 km/h during the signed times to protect children near schools.",
+    "categoryId": 2
+  },
+  {
+    "text": "At an uncontrolled T-intersection, who must give way?",
+    "optionA": "The vehicle on the continuing (through) road",
+    "optionB": "The vehicle on the terminating road (the top of the T)",
+    "optionC": "Whichever vehicle arrives first",
+    "optionD": "The larger vehicle",
+    "correctAnswer": "B",
+    "explanation": "At a T-intersection, traffic on the terminating road must give way to traffic on the continuing through road.",
+    "categoryId": 3
+  },
+  {
+    "text": "When entering a roundabout, who must you give way to?",
+    "optionA": "Vehicles waiting to enter from other approaches",
+    "optionB": "Vehicles already on the roundabout, coming from your right",
+    "optionC": "Pedestrians only",
+    "optionD": "No one, roundabouts have no give way rules",
+    "correctAnswer": "B",
+    "explanation": "You must give way to any vehicle already circulating on the roundabout, which will be approaching from your right.",
+    "categoryId": 3
+  },
+  {
+    "text": "At a marked pedestrian (zebra) crossing, what must a driver do if a pedestrian is on the crossing?",
+    "optionA": "Sound the horn to warn them",
+    "optionB": "Give way and let the pedestrian finish crossing",
+    "optionC": "Proceed slowly around them",
+    "optionD": "Only stop if they are running",
+    "correctAnswer": "B",
+    "explanation": "Drivers must give way to pedestrians who are on or entering a marked pedestrian crossing.",
+    "categoryId": 3
+  },
+  {
+    "text": "If a bus is indicating to pull out from a bus stop and it is safe to do so, what should you do?",
+    "optionA": "Speed up to pass before it pulls out",
+    "optionB": "Give way and let the bus merge back into traffic",
+    "optionC": "Ignore it, buses have no priority",
+    "optionD": "Sound your horn and continue",
+    "correctAnswer": "B",
+    "explanation": "Drivers must give way to a bus indicating to pull out from a bus stop, provided it is safe for the bus to do so.",
+    "categoryId": 3
+  },
+  {
+    "text": "When an emergency vehicle is approaching with its siren or flashing lights on, what should you do?",
+    "optionA": "Speed up to clear the intersection first",
+    "optionB": "Move as far left as safely possible, and slow down or stop to let it pass",
+    "optionC": "Stop immediately, wherever you are",
+    "optionD": "Ignore it unless it is behind you",
+    "correctAnswer": "B",
+    "explanation": "You must give way to emergency vehicles using a siren or flashing lights by moving left and slowing or stopping to let them pass safely.",
+    "categoryId": 3
+  },
+  {
+    "text": "When your lane comes to an end and merges with another lane, who should give way?",
+    "optionA": "The vehicle in the continuing lane",
+    "optionB": "The vehicle in the ending lane",
+    "optionC": "Whichever vehicle is bigger",
+    "optionD": "Neither, both proceed at the same time",
+    "correctAnswer": "B",
+    "explanation": "A driver in a lane that is ending must give way to traffic already in the lane they are merging into.",
+    "categoryId": 3
+  },
+  {
+    "text": "What must a driver do when facing a Give Way sign at an intersection?",
+    "optionA": "Come to a complete stop regardless of traffic",
+    "optionB": "Slow down and give way to traffic on the road being entered or crossed",
+    "optionC": "Proceed if no vehicles are visible from the left",
+    "optionD": "Sound the horn before proceeding",
+    "correctAnswer": "B",
+    "explanation": "A Give Way sign means you must slow down, and if necessary stop, to give way to traffic on the road you are entering or crossing.",
+    "categoryId": 3
+  },
+  {
+    "text": "A driver turning left across a marked cycle lane must give way to:",
+    "optionA": "Nothing, turning traffic always has priority",
+    "optionB": "A cyclist travelling straight ahead in the cycle lane",
+    "optionC": "Only cyclists wearing high-vis clothing",
+    "optionD": "Only cyclists travelling faster than 20 km/h",
+    "correctAnswer": "B",
+    "explanation": "When turning across a cycle lane, drivers must give way to cyclists continuing straight through in that lane.",
+    "categoryId": 3
+  },
+  {
+    "text": "Two vehicles arrive from opposite directions: one turning right, one turning left, both into the same street. Who gives way?",
+    "optionA": "The vehicle turning left gives way to the vehicle turning right",
+    "optionB": "The vehicle turning right gives way to the vehicle turning left",
+    "optionC": "Whichever arrived first",
+    "optionD": "Neither needs to give way",
+    "correctAnswer": "B",
+    "explanation": "When a vehicle turning right and a vehicle turning left from the opposite direction are both turning into the same street, the vehicle turning right must give way to the vehicle turning left.",
+    "categoryId": 3
+  },
+  {
+    "text": "How close to an intersection without traffic signals are you allowed to park, unless a parking space is marked?",
+    "optionA": "Not within 1 metre",
+    "optionB": "Not within 3 metres",
+    "optionC": "Not within 6 metres",
+    "optionD": "Not within 10 metres",
+    "correctAnswer": "C",
+    "explanation": "Unless a parking space is marked, you must not stop within 6 metres of an intersection without traffic signals.",
+    "categoryId": 4
+  },
+  {
+    "text": "How close to a pedestrian crossing (on the approach side) must you avoid stopping?",
+    "optionA": "Within 1 metre",
+    "optionB": "Within 3 metres",
+    "optionC": "Within 6 metres",
+    "optionD": "Within 12 metres",
+    "correctAnswer": "C",
+    "explanation": "You must not stop within 6 metres of a pedestrian crossing on the approach side, to keep sightlines clear for pedestrians and drivers.",
+    "categoryId": 4
+  },
+  {
+    "text": "Is it legal to park alongside another vehicle that is already parked at the kerb (double parking)?",
+    "optionA": "Yes, as long as your hazard lights are on",
+    "optionB": "No, double parking is not allowed",
+    "optionC": "Yes, for up to 5 minutes",
+    "optionD": "Yes, if it is outside business hours",
+    "correctAnswer": "B",
+    "explanation": "Double parking — stopping alongside a vehicle already parked at the kerb — is illegal because it obstructs traffic.",
+    "categoryId": 4
+  },
+  {
+    "text": "Can you legally park on a footpath or grass berm?",
+    "optionA": "Yes, anywhere",
+    "optionB": "No, unless specifically permitted by signage or markings",
+    "optionC": "Yes, if only two wheels are on it",
+    "optionD": "Yes, for less than 10 minutes",
+    "correctAnswer": "B",
+    "explanation": "Parking on a footpath or berm is not allowed unless signs or markings specifically permit it.",
+    "categoryId": 4
+  },
+  {
+    "text": "Who is allowed to park in a mobility parking space?",
+    "optionA": "Anyone, if the space is empty",
+    "optionB": "Only vehicles displaying a valid mobility parking permit",
+    "optionC": "Any vehicle for up to 15 minutes",
+    "optionD": "Only emergency vehicles",
+    "correctAnswer": "B",
+    "explanation": "Mobility parks are reserved for vehicles displaying a valid mobility parking permit.",
+    "categoryId": 4
+  },
+  {
+    "text": "What are loading zones reserved for?",
+    "optionA": "Any vehicle parking overnight",
+    "optionB": "Vehicles actively loading or unloading goods",
+    "optionC": "Taxis only",
+    "optionD": "Motorcycles only",
+    "correctAnswer": "B",
+    "explanation": "Loading zones are reserved for vehicles that are actively loading or unloading goods, usually within a set time limit.",
+    "categoryId": 4
+  },
+  {
+    "text": "What does a clearway sign mean?",
+    "optionA": "You may stop briefly to drop off passengers",
+    "optionB": "No stopping is allowed at any time the clearway is in effect, even briefly",
+    "optionC": "Parking is free during the signed hours",
+    "optionD": "Only buses may use the lane",
+    "correctAnswer": "B",
+    "explanation": "On a clearway, stopping is prohibited during the signed hours, even to briefly drop off or pick up passengers.",
+    "categoryId": 4
+  },
+  {
+    "text": "Can you stop your vehicle on a bridge or in a tunnel?",
+    "optionA": "Yes, if there is no other traffic",
+    "optionB": "No, unless a parking space is specifically marked there",
+    "optionC": "Yes, for up to 2 minutes",
+    "optionD": "Yes, if hazard lights are used",
+    "correctAnswer": "B",
+    "explanation": "You must not stop on a bridge, in a tunnel, or in an underpass unless a parking space is specifically marked.",
+    "categoryId": 4
+  },
+  {
+    "text": "Before opening a car door after parking, what must a driver do?",
+    "optionA": "Open it quickly to avoid delaying other traffic",
+    "optionB": "Check it is safe and will not endanger cyclists or other road users",
+    "optionC": "Nothing, passengers are responsible",
+    "optionD": "Sound the horn first",
+    "correctAnswer": "B",
+    "explanation": "Drivers and passengers must check it is safe before opening a door, so as not to endanger cyclists or other road users passing by.",
+    "categoryId": 4
+  },
+  {
+    "text": "What is the legal breath alcohol limit for drivers aged 20 and over in New Zealand?",
+    "optionA": "150 micrograms per litre of breath",
+    "optionB": "250 micrograms per litre of breath",
+    "optionC": "400 micrograms per litre of breath",
+    "optionD": "There is no legal breath limit",
+    "correctAnswer": "B",
+    "explanation": "For drivers 20 and over, the legal breath alcohol limit is 250 micrograms of alcohol per litre of breath.",
+    "categoryId": 5
+  },
+  {
+    "text": "What is the legal blood alcohol limit for drivers aged 20 and over in New Zealand?",
+    "optionA": "20mg per 100ml",
+    "optionB": "50mg per 100ml",
+    "optionC": "80mg per 100ml",
+    "optionD": "100mg per 100ml",
+    "correctAnswer": "B",
+    "explanation": "For drivers 20 and over, the legal blood alcohol limit is 50mg of alcohol per 100ml of blood.",
+    "categoryId": 5
+  },
+  {
+    "text": "What happens if a driver refuses to undergo a breath or blood test when required by Police?",
+    "optionA": "Nothing, refusal has no consequence",
+    "optionB": "It is treated as an offence, similar to failing the test",
+    "optionC": "They receive a warning only",
+    "optionD": "They can request a different officer instead",
+    "correctAnswer": "B",
+    "explanation": "Refusing to undergo a required breath or blood test is itself an offence and is treated as seriously as failing the test.",
+    "categoryId": 5
+  },
+  {
+    "text": "Is it legal to drive if your ability is impaired by drugs, including prescription medication?",
+    "optionA": "Yes, if the drug was legally prescribed",
+    "optionB": "No, driving while impaired by any drug is illegal",
+    "optionC": "Yes, as long as you drive under 50 km/h",
+    "optionD": "Only illegal for recreational drugs, not prescription ones",
+    "correctAnswer": "B",
+    "explanation": "It is illegal to drive while impaired by any drug, whether illegal or legally prescribed, if it affects your ability to drive safely.",
+    "categoryId": 5
+  },
+  {
+    "text": "What is the purpose of an alcohol interlock device?",
+    "optionA": "It records your speed for insurance purposes",
+    "optionB": "It prevents the vehicle from starting if alcohol is detected on the driver's breath",
+    "optionC": "It automatically calls Police if you speed",
+    "optionD": "It is a device fitted to breathalyse passengers",
+    "correctAnswer": "B",
+    "explanation": "An alcohol interlock device requires a breath sample before the vehicle will start, preventing it from starting if alcohol is detected. It can be required after certain drink-driving convictions.",
+    "categoryId": 5
+  },
+  {
+    "text": "Which drivers must have a zero alcohol limit while driving in New Zealand?",
+    "optionA": "Only drivers over 65",
+    "optionB": "Drivers under 20, and drivers subject to an alcohol interlock licence condition",
+    "optionC": "Only truck drivers",
+    "optionD": "No one, the limit is the same for everyone",
+    "correctAnswer": "B",
+    "explanation": "Drivers under 20 and drivers on an alcohol interlock licence condition must have zero alcohol in their breath or blood while driving.",
+    "categoryId": 5
+  },
+  {
+    "text": "If you are supervising a learner driver, what alcohol limit applies to you?",
+    "optionA": "You may drink as normal, only the learner is restricted",
+    "optionB": "You must not exceed the legal alcohol limit that applies to a supervising driver",
+    "optionC": "There is no limit for supervisors",
+    "optionD": "Only illegal drugs are restricted for supervisors",
+    "correctAnswer": "B",
+    "explanation": "A person supervising a learner driver must also comply with the legal alcohol limit, as they are responsible for the vehicle's safe operation.",
+    "categoryId": 5
+  },
+  {
+    "text": "How does alcohol generally affect a driver's ability?",
+    "optionA": "It has no effect at low amounts",
+    "optionB": "It slows reaction time and impairs judgement",
+    "optionC": "It only affects vision, not reaction time",
+    "optionD": "It improves concentration in small amounts",
+    "correctAnswer": "B",
+    "explanation": "Alcohol slows reaction time, impairs judgement and coordination, all of which increase the risk of a crash.",
+    "categoryId": 5
+  },
+  {
+    "text": "How does combining alcohol with fatigue affect driving risk?",
+    "optionA": "It has no additional effect",
+    "optionB": "It significantly increases the risk, more than either factor alone",
+    "optionC": "Fatigue cancels out the effects of alcohol",
+    "optionD": "It only matters on motorways",
+    "correctAnswer": "B",
+    "explanation": "Fatigue and alcohol both impair driving ability, and combining the two significantly increases the risk of a crash compared with either alone.",
+    "categoryId": 5
+  },
+  {
+    "text": "When following another vehicle at night, when should you dip your headlights?",
+    "optionA": "Only if the vehicle ahead flashes its lights",
+    "optionB": "Within 100 metres, to avoid dazzling the driver ahead via their mirrors",
+    "optionC": "You never need to dip your lights when following",
+    "optionD": "Only if driving faster than 80 km/h",
+    "correctAnswer": "B",
+    "explanation": "You should dip your headlights within 100 metres of a vehicle you are following, to avoid dazzling the driver through their mirrors.",
+    "categoryId": 6
+  },
+  {
+    "text": "Should you wear sunglasses or heavily tinted glasses while driving at night?",
+    "optionA": "Yes, they reduce glare from other headlights",
+    "optionB": "No, they further reduce your already limited visibility at night",
+    "optionC": "Only on rural roads",
+    "optionD": "Only if driving above 100 km/h",
+    "correctAnswer": "B",
+    "explanation": "Sunglasses or heavily tinted glasses reduce the small amount of light available at night and should not be worn while night driving.",
+    "categoryId": 6
+  },
+  {
+    "text": "When should you use fog lights?",
+    "optionA": "Every time you drive at night",
+    "optionB": "Only when visibility is seriously reduced by fog, heavy rain, or dust",
+    "optionC": "Only on motorways",
+    "optionD": "Whenever your headlights are on",
+    "correctAnswer": "B",
+    "explanation": "Fog lights should only be used when visibility is seriously reduced by conditions such as fog, heavy rain, or dust, not for ordinary night driving.",
+    "categoryId": 6
+  },
+  {
+    "text": "What lighting must a cyclist have when riding at night?",
+    "optionA": "A red front light and white rear light only",
+    "optionB": "A white front light, a red rear light, and a rear reflector, visible from a distance",
+    "optionC": "No lighting is required if riding on footpaths",
+    "optionD": "Only a rear reflector is required",
+    "correctAnswer": "B",
+    "explanation": "At night, a cyclist must display a white light at the front and a red light at the rear, visible from a reasonable distance, along with a red rear reflector.",
+    "categoryId": 6
+  },
+  {
+    "text": "When must a motorcycle have its headlight switched on?",
+    "optionA": "Only at night",
+    "optionB": "At all times, day and night",
+    "optionC": "Only in rain",
+    "optionD": "Only on the open road",
+    "correctAnswer": "B",
+    "explanation": "Motorcycles must have their headlights switched on at all times, both during the day and at night, to improve their visibility to other road users.",
+    "categoryId": 6
+  },
+  {
+    "text": "Why should drivers be especially alert for animals on rural roads at night?",
+    "optionA": "Animals are more active and harder to see in low light, especially around dawn and dusk",
+    "optionB": "Animals cannot be legally on rural roads",
+    "optionC": "It is only a concern during the day",
+    "optionD": "Animals are attracted to headlights and will avoid the road",
+    "correctAnswer": "A",
+    "explanation": "Many animals are most active around dawn, dusk, and at night, and are harder to see in low light, so extra caution is needed on rural roads.",
+    "categoryId": 6
+  },
+  {
+    "text": "At night, how should you judge a safe driving speed?",
+    "optionA": "Always drive at the posted daytime speed limit",
+    "optionB": "Drive at a speed that lets you stop within the distance you can see to be clear, which may be less than the posted limit",
+    "optionC": "Speed does not need to change at night",
+    "optionD": "Only reduce speed if it is raining",
+    "correctAnswer": "B",
+    "explanation": "At night your visibility is reduced, so you should drive at a speed that allows you to stop within the distance illuminated by your headlights, even if that is below the posted limit.",
+    "categoryId": 6
   }
 ]
