@@ -1,9 +1,10 @@
 // src/components/ProtectedRoute.tsx
 import { Navigate, Outlet } from 'react-router-dom'
-// 之后接入你的auth store，先用假变量占位
-const isAuthenticated = true // TODO: 换成 useAuthStore 里的真实状态
+import { useAuthStore } from '../store/authStore'
 
 export default function ProtectedRoute() {
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+
   if (!isAuthenticated) {
     return <Navigate to="/" replace />
   }
