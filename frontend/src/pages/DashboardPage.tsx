@@ -7,12 +7,12 @@ import * as authApi from '../api/auth'
 
 // TODO: 等后端有分类进度接口后，把这里的静态数据换成真实API请求
 const CATEGORIES = [
-  { name: 'Road Rules', slug: 'road-rules', progress: 70, color: 'bg-kiwi-green' },
-  { name: 'Road Signs', slug: 'road-signs', progress: 45, color: 'bg-sky-blue' },
-  { name: 'Give Way Rules', slug: 'give-way-rules', progress: 30, color: 'bg-kiwifruit-orange' },
-  { name: 'Speed Limits', slug: 'speed-limits', progress: 90, color: 'bg-alert-red' },
-  { name: 'Alcohol & Drugs', slug: 'alcohol-drugs', progress: 15, color: 'bg-[oklch(70%_0.14_300)]' },
-  { name: 'Give Way at Intersections', slug: 'intersections', progress: 55, color: 'bg-[oklch(75%_0.15_95)]' },
+  { name: 'Road Signs', progress: 45, color: 'bg-sky-blue' },
+  { name: 'Speed Limits', progress: 90, color: 'bg-alert-red' },
+  { name: 'Give Way Rules', progress: 30, color: 'bg-kiwifruit-orange' },
+  { name: 'Parking', progress: 70, color: 'bg-kiwi-green' },
+  { name: 'Alcohol & Drugs', progress: 15, color: 'bg-[oklch(70%_0.14_300)]' },
+  { name: 'Night Driving', progress: 55, color: 'bg-[oklch(38%_0.12_270)]' },
 ]
 
 // TODO: 等后端有 accuracy 接口后替换成真实数据
@@ -96,7 +96,7 @@ export default function DashboardPage() {
           <h2 className="font-heading font-bold text-lg text-ink mb-3.5">Practice a category</h2>
           <div className="grid grid-cols-2 gap-3.5">
             {CATEGORIES.map((cat) => (
-              <Link key={cat.slug} to={`/quiz?category=${cat.slug}`} className="no-underline">
+              <Link key={cat.name} to={`/quiz?category=${encodeURIComponent(cat.name)}`} className="no-underline">
                 <Card padding="sm" className="flex flex-col gap-2 hover:shadow-[0_4px_0_var(--color-border-subtle)] transition-shadow">
                   <div className={`w-7 h-7 rounded-[9px] ${cat.color}`} />
                   <div className="font-heading font-bold text-sm text-ink">{cat.name}</div>

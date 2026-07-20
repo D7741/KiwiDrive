@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
+import RequireRealAuth from './components/RequireRealAuth'
 import AuthPage from './pages/AuthPage'
 import DashboardPage from './pages/DashboardPage'
 import QuizPage from './pages/QuizPage'
@@ -17,15 +18,21 @@ export default function App() {
         {/* 公开路由：登录/注册 */}
         <Route path="/" element={<AuthPage />} />
 
-        {/* 需要登录才能访问的路由，套上Layout + 保护 */}
+        {/* 需要登录才能访问的路由，套上Layout + 保护（Guest也可访问） */}
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/quiz" element={<QuizPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/achievements" element={<AchievementsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/admin" element={<AdminPage />} />
+          </Route>
+        </Route>
+
+        {/* Quiz 需要真实登录，Guest 不允许访问 */}
+        <Route element={<RequireRealAuth />}>
+          <Route element={<Layout />}>
+            <Route path="/quiz" element={<QuizPage />} />
           </Route>
         </Route>
       </Routes>

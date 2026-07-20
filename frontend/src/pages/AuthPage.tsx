@@ -1,6 +1,6 @@
 // src/pages/AuthPage.tsx
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Button, Input } from '../components/ui'
 import { useAuthStore } from '../store/authStore'
 
@@ -15,6 +15,7 @@ interface FormErrors {
 
 export default function AuthPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { login, register, continueAsGuest } = useAuthStore()
 
   const [mode, setMode] = useState<Mode>('login')
@@ -25,6 +26,9 @@ export default function AuthPage() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [authError, setAuthError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [redirectMessage, setRedirectMessage] = useState(
+    (location.state as { message?: string } | null)?.message ?? ''
+  )
 
   const isEmailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
@@ -32,6 +36,7 @@ export default function AuthPage() {
     setMode(next)
     setErrors({})
     setAuthError('')
+    setRedirectMessage('')
   }
 
   const handleSubmit = async () => {
@@ -112,6 +117,12 @@ export default function AuthPage() {
               Register
             </button>
           </div>
+
+          {redirectMessage && (
+            <div className="bg-sky-blue-light text-sky-blue-dark text-[13px] font-semibold px-3.5 py-3 rounded-xl mb-4.5">
+              {redirectMessage}
+            </div>
+          )}
 
           {authError && (
             <div className="bg-alert-red-light text-alert-red text-[13px] font-semibold px-3.5 py-3 rounded-xl mb-4.5">

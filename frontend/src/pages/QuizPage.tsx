@@ -6,12 +6,12 @@ import * as questionsApi from '../api/questions'
 import type { Question, AnswerResult } from '../types'
 
 const CATEGORIES = [
-  { name: 'Road Rules', color: 'bg-kiwi-green' },
   { name: 'Road Signs', color: 'bg-sky-blue' },
-  { name: 'Give Way Rules', color: 'bg-kiwifruit-orange' },
   { name: 'Speed Limits', color: 'bg-alert-red' },
+  { name: 'Give Way Rules', color: 'bg-kiwifruit-orange' },
+  { name: 'Parking', color: 'bg-kiwi-green' },
   { name: 'Alcohol & Drugs', color: 'bg-[oklch(70%_0.14_300)]' },
-  { name: 'Give Way at Intersections', color: 'bg-[oklch(75%_0.15_95)]' },
+  { name: 'Night Driving', color: 'bg-[oklch(38%_0.12_270)]' },
 ]
 
 const QUIZ_LENGTH = 5
