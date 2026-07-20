@@ -1,5 +1,6 @@
 using KiwiDrive.Dtos.QuestionDtos;
 using KiwiDrive.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KiwiDrive.Controllers
@@ -69,6 +70,7 @@ namespace KiwiDrive.Controllers
         }
 
         // POST /api/questions/answer
+        [Authorize]
         [HttpPost("answer")]
         public async Task<IActionResult> SubmitAnswer([FromBody] AnswerSubmitDto dto)
         {
