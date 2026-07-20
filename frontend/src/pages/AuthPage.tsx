@@ -27,12 +27,14 @@ export default function AuthPage()
 
     const isEmailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
+
     const switchMode = (next: Mode) => {
         setMode(next)
         setErrors({})
         setAuthError('')
     }
 
+    // detected if the form is correct required.
     const handleSubmit = () => 
         {
             const newErrors: FormErrors = {}
@@ -50,15 +52,14 @@ export default function AuthPage()
                 return
             }
 
-            // TODO: 下一步接入真实后端 API（POST /api/auth/login 或 /api/auth/register）
-            // 目前先用假逻辑跑通页面交互
+            // TODO: Connect with the actual database
             setErrors({})
             setAuthError('')
             navigate('/dashboard')
         }
 
     const handleGuest = () => {
-    // TODO: 之后接入 guest 模式的 store 状态
+    // TODO: controller with guest dashboard
     navigate('/dashboard')
     }
 
@@ -66,7 +67,7 @@ export default function AuthPage()
         <div className="min-h-screen flex items-center justify-center p-6 box-border">
         <div className="w-full max-w-[960px] grid grid-cols-2 bg-card rounded-[28px] shadow-[0_2px_0_var(--color-border-subtle),0_20px_50px_oklch(30%_0.03_260/0.1)] overflow-hidden">
 
-        {/* 左侧品牌介绍区 */}
+        {/* left */}
         <div className="bg-gradient-to-br from-kiwi-green to-[oklch(50%_0.15_165)] p-12 flex flex-col justify-between text-white">
         <div>
             <div className="font-heading font-extrabold text-2xl mb-2">KiwiDrive</div>
@@ -84,7 +85,7 @@ export default function AuthPage()
         </div>
         </div>
 
-        {/* 右侧表单区 */}
+        {/* right form */}
         <div className="p-12">
         <div className="flex gap-1.5 bg-cream rounded-2xl p-1 mb-7">
             <button
