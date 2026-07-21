@@ -1,4 +1,5 @@
 using KiwiDrive.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KiwiDrive.Controllers
@@ -30,6 +31,7 @@ namespace KiwiDrive.Controllers
         }
 
         // GET /api/achievements/user
+        [Authorize]
         [HttpGet("user")]
         public async Task<IActionResult> GetUserAchievements()
         {

@@ -41,9 +41,8 @@ export default function LeaderboardPage() {
   const myEntry = entries.find((e) => e.id === user?.id)
   const podium = entries.slice(0, 3)
   const rest = entries.slice(3)
-  const podiumHeights = [64, 84, 50]
-  const podiumColors = ['bg-[oklch(75%_0.06_95)]', 'bg-kiwi-green', 'bg-[oklch(68%_0.1_60)]']
-
+  const podiumHeights = [84, 64, 50]
+  const podiumColors = ['bg-kiwi-green', 'bg-[oklch(75%_0.06_95)]', 'bg-[oklch(68%_0.1_60)]'] 
   return (
     <div className="max-w-[720px] mx-auto px-8 py-10 pb-24">
       <h1 className="font-heading font-extrabold text-2xl text-ink mb-1">Leaderboard</h1>
@@ -71,37 +70,39 @@ export default function LeaderboardPage() {
         </div>
       )}
 
-      <Card padding="sm" className="!p-2">
-        <div className="flex flex-col gap-1">
-          {rest.map((row) => {
-            const isMe = row.id === user?.id
-            return (
-              <div
-                key={row.id}
-                className={`flex items-center gap-3.5 px-4 py-3 rounded-2xl ${
-                  isMe ? 'bg-kiwi-green-light border-[1.5px] border-kiwi-green' : 'hover:bg-cream'
-                }`}
-              >
-                <div className={`w-6.5 text-center font-heading font-extrabold text-sm ${isMe ? 'text-[oklch(45%_0.14_152)]' : 'text-ink-light'}`}>
-                  {row.rank}
+      {rest.length > 0 && (
+        <Card padding="sm" className="!p-2">
+            <div className="flex flex-col gap-1">
+            {rest.map((row) => {
+                const isMe = row.id === user?.id
+                return (
+                <div
+                    key={row.id}
+                    className={`flex items-center gap-3.5 px-4 py-3 rounded-2xl ${
+                    isMe ? 'bg-kiwi-green-light border-[1.5px] border-kiwi-green' : 'hover:bg-cream'
+                    }`}
+                >
+                    <div className={`w-6.5 text-center font-heading font-extrabold text-sm ${isMe ? 'text-[oklch(45%_0.14_152)]' : 'text-ink-light'}`}>
+                    {row.rank}
+                    </div>
+                    <div className={`w-8.5 h-8.5 rounded-[10px] text-white flex items-center justify-center font-heading font-bold text-[13px] ${AVATAR_COLORS[row.rank % AVATAR_COLORS.length]}`}>
+                    {initials(row.username)}
+                    </div>
+                    <div className={`flex-1 text-sm ${isMe ? 'font-bold text-[oklch(30%_0.03_260)]' : 'font-semibold text-ink'}`}>
+                    {row.username}
+                    </div>
+                    <div className={`text-xs font-bold px-2.5 py-1 rounded-lg ${isMe ? 'text-[oklch(45%_0.14_152)] bg-[oklch(96%_0.03_152)]' : 'text-ink-light bg-[oklch(95%_0.01_95)]'}`}>
+                    Lvl {row.level}
+                    </div>
+                    <div className={`w-17.5 text-right text-sm font-bold ${isMe ? 'text-[oklch(35%_0.02_260)]' : 'text-[oklch(45%_0.02_260)]'}`}>
+                    {row.xp} XP
+                    </div>
                 </div>
-                <div className={`w-8.5 h-8.5 rounded-[10px] text-white flex items-center justify-center font-heading font-bold text-[13px] ${AVATAR_COLORS[row.rank % AVATAR_COLORS.length]}`}>
-                  {initials(row.username)}
-                </div>
-                <div className={`flex-1 text-sm ${isMe ? 'font-bold text-[oklch(30%_0.03_260)]' : 'font-semibold text-ink'}`}>
-                  {row.username}
-                </div>
-                <div className={`text-xs font-bold px-2.5 py-1 rounded-lg ${isMe ? 'text-[oklch(45%_0.14_152)] bg-[oklch(96%_0.03_152)]' : 'text-ink-light bg-[oklch(95%_0.01_95)]'}`}>
-                  Lvl {row.level}
-                </div>
-                <div className={`w-17.5 text-right text-sm font-bold ${isMe ? 'text-[oklch(35%_0.02_260)]' : 'text-[oklch(45%_0.02_260)]'}`}>
-                  {row.xp} XP
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </Card>
+                )
+            })}
+            </div>
+        </Card>
+      )}
     </div>
   )
 }

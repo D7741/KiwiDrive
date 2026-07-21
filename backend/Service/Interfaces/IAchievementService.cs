@@ -6,6 +6,5 @@ namespace KiwiDrive.Services.Interfaces
     {
         Task<List<AchievementDto>> GetAllAchievementsAsync();
         Task<List<AchievementDto>> GetUserAchievementsAsync(int userId);
-        Task CheckAndUnlockAchievementsAsync(int userId);
     }
 }

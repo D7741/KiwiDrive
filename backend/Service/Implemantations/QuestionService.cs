@@ -94,9 +94,9 @@ namespace KiwiDrive.Services.Implementations
                     var newXP = user.XP + xpEarned;
                     await _userRepository.UpdateUserXPAsync(userId, newXP);
 
-                    await UpdateStreakOnCorrectAnswerAsync(user);
+                    var newStreak = await UpdateStreakOnCorrectAnswerAsync(user);
 
-                    await CheckAndUnlockAchievementsAsync(userId, newXP);
+                    await CheckAndUnlockAchievementsAsync(userId, newXP, newStreak);
                 }
             }
 
@@ -173,7 +173,9 @@ namespace KiwiDrive.Services.Implementations
 
 
         // private helper
-        private async Task UpdateStreakOnCorrectAnswerAsync(User user)
+        private const string SevenDayStreakAchievementName = "7 Day Streak";
+
+        private async Task<int> UpdateStreakOnCorrectAnswerAsync(User user)
         {
             var today = DateTime.UtcNow.Date;
             var lastStreakDate = user.LastStreakDate?.Date;
@@ -181,7 +183,7 @@ namespace KiwiDrive.Services.Implementations
             if (lastStreakDate == today)
             {
                 // Already checked in today, no change.
-                return;
+                return user.Streak;
             }
 
             var newStreak = lastStreakDate == today.AddDays(-1)
@@ -189,14 +191,30 @@ namespace KiwiDrive.Services.Implementations
                 : 1;
 
             await _userRepository.UpdateStreakAsync(user.Id, newStreak);
+            return newStreak;
         }
 
-        private async Task CheckAndUnlockAchievementsAsync(int userId, int currentXP)
+        private async Task CheckAndUnlockAchievementsAsync(int userId, int currentXP, int currentStreak)
         {
             var allAchievements = await _achievementRepository.GetAllAchievementsAsync();
 
             foreach (var achievement in allAchievements)
             {
+                // "7 Day Streak" is not XP-based, so it needs its own check instead of
+                // the XPRequired threshold below.
+                if (achievement.Name == SevenDayStreakAchievementName)
+                {
+                    if (currentStreak < 7) continue;
+
+                    var streakAlreadyUnlocked = await _achievementRepository
+                        .HasUserAchievementAsync(userId, achievement.Id);
+
+                    if (!streakAlreadyUnlocked)
+                        await _achievementRepository.UnlockAchievementAsync(userId, achievement.Id);
+
+                    continue;
+                }
+
                 if (achievement.XPRequired == 0) continue;
 
                 if (currentXP >= achievement.XPRequired)

@@ -9,12 +9,10 @@ namespace KiwiDrive.Services.Implementations
     public class AchievementService : IAchievementService
     {
         private readonly IAchievementRepository _achievementRepository;
-        private readonly IUserRepository _userRepository;
 
-        public AchievementService(IAchievementRepository achievementRepository, IUserRepository userRepository)
+        public AchievementService(IAchievementRepository achievementRepository)
         {
             _achievementRepository = achievementRepository;
-            _userRepository = userRepository;
         }
 
         public async Task<List<AchievementDto>> GetAllAchievementsAsync()
@@ -35,40 +33,18 @@ namespace KiwiDrive.Services.Implementations
 
         public async Task<List<AchievementDto>> GetUserAchievementsAsync(int userId)
         {
-            var achievements = await _achievementRepository.GetUserAchievementsAsync(userId);
+            var allAchievements = await _achievementRepository.GetAllAchievementsAsync();
+            var unlockedAchievements = await _achievementRepository.GetUserAchievementsAsync(userId);
+            var unlockedIds = unlockedAchievements.Select(a => a.Id).ToHashSet();
 
-            if (!achievements.Any()) return [];
-
-            return achievements.Select(a => new AchievementDto
+            return allAchievements.Select(a => new AchievementDto
             {
                 Id = a.Id,
                 Name = a.Name,
                 Description = a.Description,
                 Icon = a.Icon,
-                IsUnlocked = true
+                IsUnlocked = unlockedIds.Contains(a.Id)
             }).ToList();
-        }
-
-        public async Task CheckAndUnlockAchievementsAsync(int userId)
-        {
-            var user = await _userRepository.GetUserByIdAsync(userId);
-            if (user == null) return;
-
-            var allAchievements = await _achievementRepository.GetAllAchievementsAsync();
-
-            foreach (var achievement in allAchievements)
-            {
-                if (achievement.XPRequired == 0) continue;
-
-                if (user.XP >= achievement.XPRequired)
-                {
-                    var alreadyUnlocked = await _achievementRepository
-                        .HasUserAchievementAsync(userId, achievement.Id);
-
-                    if (!alreadyUnlocked)
-                        await _achievementRepository.UnlockAchievementAsync(userId, achievement.Id);
-                }
-            }
         }
     }
 }
