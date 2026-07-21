@@ -1,7 +1,7 @@
 // src/types/index.ts
 
 export interface User {
-  id: string
+  id: number
   username: string
   email: string
   xp: number
@@ -15,7 +15,7 @@ export interface AuthResponse {
 }
 
 export interface Question {
-  id: string
+  id: number
   text: string
   optionA: string
   optionB: string
@@ -40,7 +40,7 @@ export interface LeaderboardEntry {
 }
 
 export interface Achievement {
-  id: string
+  id: number
   name: string
   description: string
   icon: string
@@ -49,4 +49,13 @@ export interface Achievement {
 
 export interface ApiError {
   message: string
+}
+
+export interface LeaderboardEntry {
+  id: number
+  rank: number
+  username: string
+  xp: number
+  level: number
+  streak: number
 }

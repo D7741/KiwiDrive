@@ -104,12 +104,20 @@ namespace KiwiDrive.Services.Implementations
 
             return users.Select((u, index) => new LeaderboardEntryDto
             {
+                Id = u.Id,
                 Rank = index + 1,
                 Username = u.Username,
                 XP = u.XP,
                 Level = u.Level,
                 Streak = u.Streak
             }).ToList();
+        }
+
+        // Temp: Test purpose
+        public async Task<List<UserProfileDto>> GetAllUsersAsync()
+        {
+            var users = await _userRepository.GetAllUsersAsync();
+            return users.Select(u => MapToProfileDto(u)).ToList();
         }
 
 

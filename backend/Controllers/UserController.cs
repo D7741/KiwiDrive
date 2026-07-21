@@ -15,7 +15,7 @@ namespace KiwiDrive.Controllers
         {
             _userService = userService;
         }
-        
+
 
         // GET
         [HttpGet("profile")]
@@ -70,6 +70,22 @@ namespace KiwiDrive.Controllers
             catch (ArgumentException ex)
             {
                 return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        // GET /api/users
+        // Temp test purpose!
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var users = await _userService.GetAllUsersAsync();
+                return Ok(users);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "An error occurred." });
             }
         }
     }

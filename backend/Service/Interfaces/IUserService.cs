@@ -11,6 +11,9 @@ namespace KiwiDrive.Services.Interfaces
         Task<UserProfileDto?> UpdateUserAsync(int id, UserUpdateDto dto);
         Task<bool> DeleteUserAsync(int id);
 
+        // Temp: test purpose
+        Task<List<UserProfileDto>> GetAllUsersAsync();
+
         // Leaderboard
         Task<List<LeaderboardEntryDto>> GetLeaderboardAsync();
 
