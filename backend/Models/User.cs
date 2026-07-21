@@ -12,6 +12,7 @@ public class User
     public int XP { get; set; } = 0;
     public int Level { get; set; } = 1;
     public int Streak { get; set; } = 0;
+    public DateTime? LastStreakDate { get; set; }
     public DateTime LastLoginDate { get; set; } = DateTime.UtcNow;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     

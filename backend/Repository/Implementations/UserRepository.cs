@@ -101,6 +101,7 @@ namespace KiwiDrive.Repository.Implementations
             if (user == null) return;
 
             user.Streak = streak;
+            user.LastStreakDate = DateTime.UtcNow.Date;
             await _context.SaveChangesAsync();
         }
 

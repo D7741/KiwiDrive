@@ -4,6 +4,8 @@ import { useSearchParams, Link } from 'react-router-dom'
 import { Button, Card, QuestionCard } from '../components/ui'
 import * as questionsApi from '../api/questions'
 import type { Question, AnswerResult } from '../types'
+import { getProfile } from '../api/auth'
+import { useAuthStore } from '../store/authStore'
 
 const CATEGORIES = [
   { name: 'Road Signs', color: 'bg-sky-blue' },
@@ -83,15 +85,18 @@ export default function QuizPage() {
     }
   }
 
-  const handleNext = () => {
+    const handleNext = () => {
     if (qIndex < quizQuestions.length - 1) {
-      setQIndex((i) => i + 1)
-      setSelectedKey(null)
-      setResult(null)
+        setQIndex((i) => i + 1)
+        setSelectedKey(null)
+        setResult(null)
     } else {
-      setPhase('summary')
+        setPhase('summary')
+        getProfile().then((profile) => {
+        useAuthStore.setState({ user: profile })
+        }).catch(() => {})
     }
-  }
+    }
 
   const handleRestart = () => {
     setPhase('select')

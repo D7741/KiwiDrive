@@ -94,6 +94,8 @@ namespace KiwiDrive.Services.Implementations
                     var newXP = user.XP + xpEarned;
                     await _userRepository.UpdateUserXPAsync(userId, newXP);
 
+                    await UpdateStreakOnCorrectAnswerAsync(user);
+
                     await CheckAndUnlockAchievementsAsync(userId, newXP);
                 }
             }
@@ -171,6 +173,24 @@ namespace KiwiDrive.Services.Implementations
 
 
         // private helper
+        private async Task UpdateStreakOnCorrectAnswerAsync(User user)
+        {
+            var today = DateTime.UtcNow.Date;
+            var lastStreakDate = user.LastStreakDate?.Date;
+
+            if (lastStreakDate == today)
+            {
+                // Already checked in today, no change.
+                return;
+            }
+
+            var newStreak = lastStreakDate == today.AddDays(-1)
+                ? user.Streak + 1
+                : 1;
+
+            await _userRepository.UpdateStreakAsync(user.Id, newStreak);
+        }
+
         private async Task CheckAndUnlockAchievementsAsync(int userId, int currentXP)
         {
             var allAchievements = await _achievementRepository.GetAllAchievementsAsync();
