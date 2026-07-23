@@ -6,6 +6,7 @@ namespace KiwiDrive.Controllers
 {
     [Route("api/admin")]
     [ApiController]
+    [Authorize]
     public class AdminController : ControllerBase
     {
         private readonly IQuestionService _questionService;
@@ -21,6 +22,10 @@ namespace KiwiDrive.Controllers
         {
             try
             {
+                var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+                if (role != "Admin")
+                    return Forbid();
+
                 var question = await _questionService.CreateQuestionAsync(dto);
                 return Ok(question);
             }

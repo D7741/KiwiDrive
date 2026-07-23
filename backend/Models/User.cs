@@ -15,6 +15,7 @@ public class User
     public DateTime? LastStreakDate { get; set; }
     public DateTime LastLoginDate { get; set; } = DateTime.UtcNow;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public string Role { get; set; } = "User"; // "Admin"
     
     // Navigation properties
     public ICollection<UserProgress> UserProgresses { get; set; } = new List<UserProgress>();
