@@ -15,7 +15,7 @@ export function extractRoleFromToken(token: string): string | null {
   return (
     (payload['role'] as string) ??
     (payload['Role'] as string) ??
-    (payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role'] as string) ??
+    (payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] as string) ??
     null
   )
 }
