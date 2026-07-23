@@ -113,6 +113,19 @@ namespace KiwiDrive.Services.Implementations
             }).ToList();
         }
 
+        public async Task<bool> ChangePasswordAsync(int userId, ChangePasswordDto dto)
+        {
+            var user = await _userRepository.GetUserByIdAsync(userId);
+            if (user == null) return false;
+
+            if (!BCrypt.Net.BCrypt.Verify(dto.CurrentPassword, user.PasswordHash))
+                throw new UnauthorizedAccessException("Current password is incorrect.");
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _userRepository.UpdateUserAsync(user);
+            return true;
+        }
+
         // Temp: Test purpose
         public async Task<List<UserProfileDto>> GetAllUsersAsync()
         {

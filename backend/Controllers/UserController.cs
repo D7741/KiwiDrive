@@ -73,6 +73,29 @@ namespace KiwiDrive.Controllers
             }
         }
 
+        // PUT /api/users/password
+        [HttpPut("password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
+        {
+            try
+            {
+                var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+                var result = await _userService.ChangePasswordAsync(userId, dto);
+                if (!result)
+                    return NotFound(new { error = "User not found." });
+
+                return Ok(new { message = "Password changed successfully." });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { error = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "An error occurred while changing password." });
+            }
+        }
+
         // GET /api/users
         // Temp test purpose!
         [HttpGet("all")]

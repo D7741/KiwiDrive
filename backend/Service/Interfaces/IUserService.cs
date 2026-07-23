@@ -10,6 +10,7 @@ namespace KiwiDrive.Services.Interfaces
         Task<UserProfileDto?> GetUserProfileAsync(int id);
         Task<UserProfileDto?> UpdateUserAsync(int id, UserUpdateDto dto);
         Task<bool> DeleteUserAsync(int id);
+        Task<bool> ChangePasswordAsync(int userId, ChangePasswordDto dto);
 
         // Temp: test purpose
         Task<List<UserProfileDto>> GetAllUsersAsync();
