@@ -12,52 +12,52 @@ const FEATURES = [
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-cream">
-      <div className="max-w-[1180px] mx-auto flex items-center justify-between px-10 py-5">
-        <div className="font-heading font-extrabold text-xl text-kiwi-green">KiwiDrive</div>
-        <div className="flex items-center gap-5">
-          <Link to="/auth" className="text-sm font-semibold text-ink-muted no-underline">Log In</Link>
+      <div className="max-w-[1180px] mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 py-4 md:py-5">
+        <div className="font-heading font-extrabold text-lg md:text-xl text-kiwi-green">KiwiDrive</div>
+        <div className="flex items-center gap-3 sm:gap-5">
+          <Link to="/auth" className="text-[13px] sm:text-sm font-semibold text-ink-muted no-underline">Log In</Link>
           <Link
             to="/auth"
-            className="font-heading font-bold text-sm text-white bg-kiwi-green px-5 py-2.5 rounded-xl shadow-[0_3px_0_var(--color-kiwi-green-dark)] no-underline"
+            className="font-heading font-bold text-[13px] sm:text-sm text-white bg-kiwi-green px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-[0_3px_0_var(--color-kiwi-green-dark)] no-underline whitespace-nowrap"
           >
             Sign Up Free
           </Link>
         </div>
       </div>
 
-      <div className="max-w-[1180px] mx-auto px-10 py-14 grid md:grid-cols-2 gap-14 items-center">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-14 grid md:grid-cols-2 gap-8 md:gap-14 items-center">
         <div>
           <div className="inline-block font-heading font-bold text-xs tracking-wide text-[oklch(45%_0.14_152)] bg-kiwi-green-light px-3.5 py-1.5 rounded-full mb-4.5">
             FOR NEW ZEALAND LEARNER DRIVERS
           </div>
-          <h1 className="font-heading font-extrabold text-[2.75rem] leading-[1.12] text-ink mb-4.5">
+          <h1 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.15] md:leading-[1.12] text-ink mb-4.5">
             Pass your learner licence test, one quiz at a time.
           </h1>
-          <p className="text-base leading-relaxed text-ink-muted mb-7 max-w-[460px]">
+          <p className="text-[15px] sm:text-base leading-relaxed text-ink-muted mb-7 max-w-[460px]">
             Earn XP, build a daily streak, and unlock badges while you master road rules, signs, and give-way scenarios — built for the NZ theory test.
           </p>
-          <div className="flex gap-3.5 mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-3.5 mb-8">
             <Link
               to="/auth"
-              className="font-heading font-bold text-base text-white bg-kiwi-green px-7 py-3.5 rounded-2xl shadow-[0_4px_0_var(--color-kiwi-green-dark)] no-underline"
+              className="font-heading font-bold text-base text-white bg-kiwi-green px-7 py-3.5 rounded-2xl shadow-[0_4px_0_var(--color-kiwi-green-dark)] no-underline text-center"
             >
               Start Learning Free
             </Link>
             <Link
               to="/auth"
-              className="font-heading font-bold text-base text-ink-muted bg-transparent border-2 border-border-subtle px-6.5 py-3 rounded-2xl no-underline"
+              className="font-heading font-bold text-base text-ink-muted bg-transparent border-2 border-border-subtle px-6.5 py-3 rounded-2xl no-underline text-center"
             >
               Try a Quiz
             </Link>
           </div>
-          <div className="flex gap-6 text-[13px] text-ink-muted">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-ink-muted">
             <span>★ 6 practice categories</span>
             <span>★ Free to start</span>
             <span>★ No credit card</span>
           </div>
         </div>
 
-        <div className="bg-card rounded-[28px] p-7 shadow-[0_2px_0_var(--color-border-subtle),0_24px_60px_oklch(30%_0.03_260/0.1)]">
+        <div className="bg-card rounded-[28px] p-5 sm:p-7 shadow-[0_2px_0_var(--color-border-subtle),0_24px_60px_oklch(30%_0.03_260/0.1)]">
           <div className="flex items-center justify-between mb-4.5">
             <div className="font-heading font-bold text-sm text-ink">Today's progress</div>
             <StreakFlame days={12} active />
@@ -66,7 +66,7 @@ export default function LandingPage() {
             <XPBar current={320} max={500} level={4} />
           </div>
           <div className="font-heading font-bold text-[13px] text-ink mb-2.5">Recent badges</div>
-          <div className="flex gap-3.5">
+          <div className="flex gap-2.5 sm:gap-3.5 flex-wrap">
             <Badge label="7-Day Streak" unlocked />
             <Badge label="Perfect Score" unlocked />
             <Badge label="Top 10" unlocked={false} />
@@ -74,27 +74,27 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <div className="bg-card py-16 px-10 border-t border-border-subtle">
+      <div className="bg-card py-12 md:py-16 px-4 sm:px-6 md:px-10 border-t border-border-subtle">
         <div className="max-w-[1180px] mx-auto">
-          <h2 className="font-heading font-extrabold text-2xl text-ink text-center mb-10">
+          <h2 className="font-heading font-extrabold text-xl md:text-2xl text-ink text-center mb-8 md:mb-10">
             Built to keep you coming back
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
             {FEATURES.map((f) => (
-              <div key={f.title} className="text-center px-2.5">
-                <div className={`w-13 h-13 rounded-2xl ${f.color} flex items-center justify-center mx-auto mb-3.5`}>
-                  <div className={`w-4.5 h-4.5 rounded-md ${f.dot}`} />
+              <div key={f.title} className="text-center px-1 sm:px-2.5">
+                <div className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl ${f.color} flex items-center justify-center mx-auto mb-3 sm:mb-3.5`}>
+                  <div className={`w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-md ${f.dot}`} />
                 </div>
-                <div className="font-heading font-bold text-[15px] text-ink mb-1.5">{f.title}</div>
-                <div className="text-[13px] text-ink-muted leading-relaxed">{f.desc}</div>
+                <div className="font-heading font-bold text-sm sm:text-[15px] text-ink mb-1.5">{f.title}</div>
+                <div className="text-xs sm:text-[13px] text-ink-muted leading-relaxed">{f.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="py-14 px-10 text-center">
-        <h2 className="font-heading font-extrabold text-2xl text-ink mb-4">Ready to get your restricted?</h2>
+      <div className="py-10 md:py-14 px-4 sm:px-6 md:px-10 text-center">
+        <h2 className="font-heading font-extrabold text-xl md:text-2xl text-ink mb-4">Ready to get your restricted?</h2>
         <Link
           to="/auth"
           className="inline-block font-heading font-bold text-base text-white bg-kiwi-green px-8 py-3.5 rounded-2xl shadow-[0_4px_0_var(--color-kiwi-green-dark)] no-underline"
@@ -103,7 +103,7 @@ export default function LandingPage() {
         </Link>
       </div>
 
-      <div className="border-t border-border-subtle py-6 px-10 text-center text-xs text-ink-light">
+      <div className="border-t border-border-subtle py-6 px-4 sm:px-6 md:px-10 text-center text-xs text-ink-light">
         KiwiDrive · An independent learner licence practice tool, not affiliated with Waka Kotahi NZTA.
       </div>
     </div>
