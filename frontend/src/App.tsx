@@ -10,6 +10,9 @@ import LeaderboardPage from './pages/LeaderboardPage'
 import AchievementsPage from './pages/AchievementsPage'
 import ProfilePage from './pages/ProfilePage'
 import AdminPage from './pages/AdminPage'
+import RequireAdmin from './components/RequireAdmin'
+
+
 
 export default function App() {
   return (

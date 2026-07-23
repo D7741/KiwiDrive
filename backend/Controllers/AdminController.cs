@@ -1,12 +1,12 @@
 using KiwiDrive.Dtos.QuestionDtos;
 using KiwiDrive.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KiwiDrive.Controllers
 {
     [Route("api/admin")]
     [ApiController]
-    [Authorize]
     public class AdminController : ControllerBase
     {
         private readonly IQuestionService _questionService;
@@ -17,6 +17,7 @@ namespace KiwiDrive.Controllers
         }
 
         // POST /api/admin/questions
+        [Authorize(Roles = "Admin")]
         [HttpPost("questions")]
         public async Task<IActionResult> CreateQuestion([FromBody] CreateQuestionDto dto)
         {
@@ -40,6 +41,7 @@ namespace KiwiDrive.Controllers
         }
 
         // PUT /api/admin/questions/{id}
+        [Authorize(Roles = "Admin")]
         [HttpPut("questions/{id}")]
         public async Task<IActionResult> UpdateQuestion(int id, [FromBody] CreateQuestionDto dto)
         {
@@ -62,6 +64,7 @@ namespace KiwiDrive.Controllers
         }
 
         // DELETE /api/admin/questions/{id}
+        [Authorize(Roles = "Admin")]
         [HttpDelete("questions/{id}")]
         public async Task<IActionResult> DeleteQuestion(int id)
         {

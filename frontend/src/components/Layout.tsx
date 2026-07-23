@@ -4,14 +4,14 @@ import { NavBar } from './ui'
 import { useAuthStore } from '../store/authStore'
 
 export default function Layout() {
-  const { user, isGuest } = useAuthStore()
+  const { user, isGuest, isAdmin } = useAuthStore()
 
   return (
     <div>
       <NavBar
         level={user?.level ?? 1}
         streak={user?.streak ?? 0}
-        isAdmin={false}
+        isAdmin={isAdmin}
       />
       <main>
         <Outlet />
