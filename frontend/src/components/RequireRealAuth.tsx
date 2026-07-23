@@ -7,7 +7,7 @@ export default function RequireRealAuth() {
   const isGuest = useAuthStore((s) => s.isGuest)
 
   if (!isAuthenticated || isGuest) {
-    return <Navigate to="/" replace state={{ message: 'Please log in to start a quiz.' }} />
+    return <Navigate to="/auth" replace state={{ message: 'Please log in to start a quiz.' }} />
   }
   return <Outlet />
 }

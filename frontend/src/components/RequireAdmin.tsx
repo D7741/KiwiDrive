@@ -1,12 +1,11 @@
-// src/components/ui/RequireAdmin.tsx
+// src/components/RequireAdmin.tsx
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 
 export default function RequireAdmin() {
   const { isAuthenticated, isAdmin } = useAuthStore()
-
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/auth" replace />
   }
   if (!isAdmin) {
     return <Navigate to="/dashboard" replace />
