@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-heading: "Baloo 2", sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
+
+  --color-cream: oklch(97% 0.015 95);
+  --color-card: oklch(99% 0.005 95);
+  --color-border-subtle: oklch(88% 0.02 95);
+  --color-ink: oklch(25% 0.03 260);
+  --color-ink-muted: oklch(50% 0.02 260);
+  --color-ink-light: oklch(55% 0.02 260);
 
   --color-kiwi-green: oklch(58% 0.16 152);
   --color-kiwi-green-dark: oklch(42% 0.13 152);
@@ -18,18 +26,26 @@
 
   --color-alert-red: oklch(58% 0.19 25);
   --color-alert-red-light: oklch(93% 0.06 25);
+}
 
-  --color-cream: oklch(97% 0.015 95);
-  --color-card: oklch(99% 0.005 95);
-  --color-border-subtle: oklch(88% 0.02 95);
+/* 深色模式下，重新赋值这些语义化变量 */
+.dark {
+  --color-cream: oklch(18% 0.02 260);
+  --color-card: oklch(23% 0.02 260);
+  --color-border-subtle: oklch(30% 0.02 260);
+  --color-ink: oklch(92% 0.01 95);
+  --color-ink-muted: oklch(75% 0.01 95);
+  --color-ink-light: oklch(65% 0.01 95);
 
-  --color-ink: oklch(25% 0.03 260);
-  --color-ink-muted: oklch(50% 0.02 260);
-  --color-ink-light: oklch(55% 0.02 260);
+  --color-kiwi-green-light: oklch(28% 0.06 152);
+  --color-sky-blue-light: oklch(26% 0.07 255);
+  --color-kiwifruit-orange-light: oklch(28% 0.08 45);
+  --color-alert-red-light: oklch(28% 0.08 25);
 }
 
 body {
   margin: 0;
   background: var(--color-cream);
   font-family: var(--font-body);
+  transition: background 0.2s ease;
 }

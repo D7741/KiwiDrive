@@ -34,3 +34,11 @@ export function deleteProfile() {
     auth: true,
   })
 }
+
+export function changePassword(currentPassword: string, newPassword: string) {
+  return apiRequest<void>('/api/users/password', {
+    method: 'PUT',
+    auth: true,
+    body: JSON.stringify({ currentPassword, newPassword }),
+  })
+}

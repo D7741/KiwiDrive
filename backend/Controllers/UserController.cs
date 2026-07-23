@@ -1,5 +1,6 @@
 using KiwiDrive.Dtos.UserDtos;
 using KiwiDrive.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KiwiDrive.Controllers
@@ -18,6 +19,7 @@ namespace KiwiDrive.Controllers
 
 
         // GET
+        [Authorize]
         [HttpGet("profile")]
         public async Task<IActionResult> GetUserProfile()
         {
@@ -38,6 +40,7 @@ namespace KiwiDrive.Controllers
         }
 
         // PUT
+        [Authorize]
         [HttpPut("profile")]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto dto)
         {
@@ -56,6 +59,7 @@ namespace KiwiDrive.Controllers
         }
 
         // DELETE
+        [Authorize]
         [HttpDelete("profile")]
         public async Task<IActionResult> DeleteUser()
         {
@@ -74,6 +78,7 @@ namespace KiwiDrive.Controllers
         }
 
         // PUT /api/users/password
+        [Authorize]
         [HttpPut("password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
         {
