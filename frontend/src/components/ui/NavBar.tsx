@@ -1,5 +1,6 @@
 // src/components/ui/NavBar.tsx
 import { Link, useLocation } from 'react-router-dom'
+import StreakFlame from './StreakFlame'
 
 interface NavBarProps {
   level: number
@@ -20,41 +21,55 @@ export default function NavBar({ level, streak, isAdmin = false }: NavBarProps) 
   const items = isAdmin ? [...navItems, { key: 'admin', label: 'Admin', href: '/admin' }] : navItems
 
   return (
-    <div className="w-full box-border flex items-center justify-between px-8 py-4 bg-card border-b border-border-subtle">
-      <div className="flex items-center gap-9">
-        <Link to="/dashboard" className="font-heading font-extrabold text-lg text-kiwi-green no-underline">
-          KiwiDrive
-        </Link>
-        <div className="flex items-center gap-1.5">
-          {items.map((item) => {
-            const isActive = location.pathname === item.href
-            return (
-              <Link
-                key={item.key}
-                to={item.href}
-                className={`font-semibold text-sm no-underline px-3 py-2 rounded-[10px] ${
-                  isActive
-                    ? 'font-bold text-kiwi-green bg-kiwi-green-light'
-                    : 'text-ink-muted hover:bg-cream'
-                }`}
-              >
-                {item.label}
-              </Link>
-            )
-          })}
+    <div className="sticky top-0 z-20 w-full box-border bg-card/90 backdrop-blur-sm border-b border-border-subtle shadow-[0_1px_0_var(--color-border-subtle)]">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-3.5">
+
+        <div className="flex items-center gap-8">
+          <Link to="/dashboard" className="flex items-center gap-2 no-underline group">
+            <div className="w-8 h-8 rounded-[10px] bg-gradient-to-br from-kiwi-green to-[oklch(50%_0.15_165)] flex items-center justify-center shadow-[0_2px_0_var(--color-kiwi-green-dark)] group-hover:scale-105 transition-transform">
+              <div className="w-3.5 h-3.5 rounded-[4px] bg-white/95 rotate-45" />
+            </div>
+            <span className="font-heading font-extrabold text-lg text-ink tracking-tight">
+              Kiwi<span className="text-kiwi-green">Drive</span>
+            </span>
+          </Link>
+
+          <div className="hidden md:flex items-center gap-1">
+            {items.map((item) => {
+              const isActive = location.pathname === item.href
+              return (
+                <Link
+                  key={item.key}
+                  to={item.href}
+                  className={`relative font-semibold text-[13.5px] no-underline px-3.5 py-2 rounded-[10px] transition-colors ${
+                    isActive
+                      ? 'text-kiwi-green bg-kiwi-green-light font-bold'
+                      : 'text-ink-muted hover:bg-cream hover:text-ink'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+          </div>
         </div>
-      </div>
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5 text-sm font-bold text-ink-light">
-          <div className="w-4 h-4 rounded-tr-full rounded-tl-full rounded-bl-full -rotate-45 bg-kiwifruit-orange" />
-          {streak}
+
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:block scale-90 origin-right">
+            <StreakFlame days={streak} active={streak > 0} />
+          </div>
+
+          <div className="w-px h-6 bg-border-subtle hidden sm:block" />
+
+          <Link
+            to="/profile"
+            className="flex items-center gap-2 no-underline group"
+          >
+            <div className="w-9 h-9 rounded-[11px] bg-sky-blue text-white flex items-center justify-center font-heading font-extrabold text-sm shadow-[0_2px_0_var(--color-sky-blue-dark)] group-hover:scale-105 transition-transform">
+              {level}
+            </div>
+          </Link>
         </div>
-        <Link
-          to="/profile"
-          className="w-8.5 h-8.5 rounded-[10px] bg-sky-blue text-white flex items-center justify-center font-heading font-extrabold text-[13px] no-underline"
-        >
-          {level}
-        </Link>
       </div>
     </div>
   )

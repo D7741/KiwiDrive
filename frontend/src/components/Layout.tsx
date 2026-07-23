@@ -1,16 +1,19 @@
-import { Outlet, Link } from 'react-router-dom'
+// src/components/Layout.tsx
+import { Outlet } from 'react-router-dom'
+import { NavBar } from './ui'
+import { useAuthStore } from '../store/authStore'
 
 export default function Layout() {
+  const { user, isGuest } = useAuthStore()
+
   return (
     <div>
-      <nav className="flex gap-4 p-4 border-b">
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/quiz">Quiz</Link>
-        <Link to="/leaderboard">Leaderboard</Link>
-        <Link to="/achievements">Achievements</Link>
-        <Link to="/profile">Profile</Link>
-      </nav>
-      <main className="p-4">
+      <NavBar
+        level={user?.level ?? 1}
+        streak={user?.streak ?? 0}
+        isAdmin={false}
+      />
+      <main>
         <Outlet />
       </main>
     </div>
