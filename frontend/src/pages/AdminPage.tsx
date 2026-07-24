@@ -63,7 +63,7 @@ export default function AdminPage() {
       optionB: q.optionB,
       optionC: q.optionC,
       optionD: q.optionD,
-      correctAnswer: 'A', // 后端GET /api/questions不返回正确答案，编辑时需要重新选择
+      correctAnswer: 'A', // Backend GET /api/questions doesn't return the correct answer, so it must be re-selected when editing
       explanation: '',
       categoryId: category?.id ?? 1,
     })
@@ -102,14 +102,14 @@ export default function AdminPage() {
   }
 
   if (loading) {
-    return <div className="max-w-[1000px] mx-auto px-8 py-10 text-ink-muted">Loading questions...</div>
+    return <div className="max-w-[1000px] mx-auto px-4 sm:px-6 md:px-8 py-10 text-ink-muted">Loading questions...</div>
   }
 
   return (
-    <div className="max-w-[1000px] mx-auto px-8 py-9 pb-24">
-      <div className="flex items-center justify-between mb-2">
-        <h1 className="font-heading font-extrabold text-2xl text-ink">Admin</h1>
-        <span className="text-xs font-bold text-[oklch(50%_0.15_152)] bg-kiwi-green-light px-2.5 py-1 rounded-lg">
+    <div className="max-w-[1000px] mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-9 pb-24">
+      <div className="flex items-center justify-between gap-3 mb-2">
+        <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-ink">Admin</h1>
+        <span className="text-xs font-bold text-[oklch(50%_0.15_152)] bg-kiwi-green-light px-2.5 py-1 rounded-lg shrink-0">
           Role: Admin
         </span>
       </div>
@@ -117,37 +117,42 @@ export default function AdminPage() {
 
       {error && <div className="text-alert-red text-sm mb-4">{error}</div>}
 
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <h2 className="font-heading font-bold text-base text-ink">Questions ({questions.length})</h2>
-        <Button variant="primary" onClick={openNew}>+ Add question</Button>
+        <Button variant="primary" onClick={openNew} className="w-full sm:w-auto">+ Add question</Button>
       </div>
 
       <Card className="flex flex-col gap-2" padding="sm">
         {questions.map((q) => (
-          <div key={q.id} className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-cream">
+          <div key={q.id} className="flex flex-col sm:flex-row sm:items-center gap-2.5 px-3 py-2.5 rounded-xl bg-cream">
             <div className="flex-1 min-w-0">
               <div className="text-[11px] font-bold text-kiwi-green uppercase tracking-wide">{q.categoryName}</div>
               <div className="text-[13.5px] font-semibold text-ink truncate">{q.text}</div>
             </div>
-            <button
-              onClick={() => openEdit(q)}
-              className="text-xs font-semibold text-ink-muted border border-border-subtle rounded-lg px-2.5 py-1.5 bg-transparent cursor-pointer"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => handleDelete(q.id)}
-              className="text-xs font-semibold text-alert-red border border-[oklch(85%_0.06_25)] rounded-lg px-2.5 py-1.5 bg-transparent cursor-pointer"
-            >
-              Delete
-            </button>
+            <div className="flex gap-2 shrink-0">
+              <button
+                onClick={() => openEdit(q)}
+                className="flex-1 sm:flex-none text-xs font-semibold text-ink-muted border border-border-subtle rounded-lg px-2.5 py-1.5 bg-transparent cursor-pointer"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(q.id)}
+                className="flex-1 sm:flex-none text-xs font-semibold text-alert-red border border-[oklch(85%_0.06_25)] rounded-lg px-2.5 py-1.5 bg-transparent cursor-pointer"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </Card>
 
       {formOpen && (
-        <div className="fixed inset-0 bg-[oklch(20%_0.02_260/0.5)] flex items-center justify-center z-30 p-6">
-          <Card className="max-w-[520px] w-full" padding="lg">
+        <div className="fixed inset-0 bg-[oklch(20%_0.02_260/0.5)] flex items-center justify-center z-30 sm:p-6">
+          <Card
+            className="max-w-[520px] w-full h-full sm:h-auto rounded-none sm:rounded-[20px] max-h-full sm:max-h-[90vh] overflow-y-auto"
+            padding="lg"
+          >
             <h2 className="font-heading font-bold text-lg text-ink mb-4">
               {editingId != null ? 'Edit question' : 'Add question'}
             </h2>
@@ -190,8 +195,8 @@ export default function AdminPage() {
             <Input label="Explanation" value={form.explanation} onChange={(e) => setForm({ ...form, explanation: e.target.value })} />
 
             <div className="flex gap-2.5 justify-end mt-2">
-              <Button variant="outline" onClick={closeForm}>Cancel</Button>
-              <Button variant="primary" onClick={handleSave}>Save</Button>
+              <Button variant="outline" onClick={closeForm} className="flex-1 sm:flex-none">Cancel</Button>
+              <Button variant="primary" onClick={handleSave} className="flex-1 sm:flex-none">Save</Button>
             </div>
           </Card>
         </div>
