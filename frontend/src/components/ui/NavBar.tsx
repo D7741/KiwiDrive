@@ -1,5 +1,6 @@
 // src/components/ui/NavBar.tsx
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import StreakFlame from './StreakFlame'
 
@@ -45,7 +46,7 @@ export default function NavBar({ level, streak, isAdmin = false }: NavBarProps) 
 
   return (
     <div className="sticky top-0 z-20 w-full box-border bg-card/90 backdrop-blur-sm border-b border-border-subtle shadow-[0_1px_0_var(--color-border-subtle)]">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-4 sm:px-6 h-14">
 
         <div className="flex items-center gap-8">
           <Link to="/dashboard" className="flex items-center gap-2 no-underline group">
@@ -120,47 +121,57 @@ export default function NavBar({ level, streak, isAdmin = false }: NavBarProps) 
         </div>
       </div>
 
-      {/* Backdrop overlay */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 top-[57px] bg-black/40 z-10 md:hidden"
-          onClick={() => setIsMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+      {/*
+        Rendered via a portal into document.body.
+        This NavBar wrapper has backdrop-blur-sm, which (like `transform`)
+        creates a new containing block for `position: fixed` descendants.
+        Without the portal, the overlay/drawer below would be trapped inside
+        this short navbar div instead of positioning against the viewport.
+      */}
+      {createPortal(
+        <>
+          {isMenuOpen && (
+            <div
+              className="fixed inset-0 top-14 bg-black/40 z-30 md:hidden"
+              onClick={() => setIsMenuOpen(false)}
+              aria-hidden="true"
+            />
+          )}
 
-      {/* Mobile right-side drawer */}
-      <div
-        id="mobile-nav-drawer"
-        className={`fixed top-[57px] right-0 bottom-0 w-[78%] max-w-[300px] bg-card border-l border-border-subtle shadow-xl z-20 md:hidden transition-transform duration-200 ease-out ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="flex flex-col h-full overflow-y-auto p-4 gap-1">
-          {items.map((item) => {
-            const isActive = location.pathname === item.href
-            return (
-              <Link
-                key={item.key}
-                to={item.href}
-                className={`font-semibold text-[15px] no-underline px-4 py-3 rounded-[10px] transition-colors ${
-                  isActive
-                    ? 'text-kiwi-green bg-kiwi-green-light font-bold'
-                    : 'text-ink-muted hover:bg-cream hover:text-ink'
-                }`}
-              >
-                {item.label}
-              </Link>
-            )
-          })}
+          <div
+            id="mobile-nav-drawer"
+            className={`fixed top-14 right-0 bottom-0 w-[78%] max-w-[300px] bg-card border-l border-border-subtle shadow-xl z-40 md:hidden transition-transform duration-200 ease-out ${
+              isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          >
+            <div className="flex flex-col h-full overflow-y-auto p-4 gap-1">
+              {items.map((item) => {
+                const isActive = location.pathname === item.href
+                return (
+                  <Link
+                    key={item.key}
+                    to={item.href}
+                    className={`font-semibold text-[15px] no-underline px-4 py-3 rounded-[10px] transition-colors ${
+                      isActive
+                        ? 'text-kiwi-green bg-kiwi-green-light font-bold'
+                        : 'text-ink-muted hover:bg-cream hover:text-ink'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
 
-          <div className="h-px bg-border-subtle my-3" />
+              <div className="h-px bg-border-subtle my-3" />
 
-          <div className="px-4 py-2">
-            <StreakFlame days={streak} active={streak > 0} />
+              <div className="px-4 py-2">
+                <StreakFlame days={streak} active={streak > 0} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>,
+        document.body
+      )}
     </div>
   )
 }
