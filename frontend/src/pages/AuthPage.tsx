@@ -78,17 +78,17 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 box-border">
-      <div className="w-full max-w-[960px] grid grid-cols-2 bg-card rounded-[28px] shadow-[0_2px_0_var(--color-border-subtle),0_20px_50px_oklch(30%_0.03_260/0.1)] overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 py-8 box-border">
+      <div className="w-full max-w-[960px] grid grid-cols-1 md:grid-cols-2 bg-card rounded-2xl md:rounded-[28px] shadow-[0_2px_0_var(--color-border-subtle),0_20px_50px_oklch(30%_0.03_260/0.1)] overflow-hidden">
 
-        <div className="bg-gradient-to-br from-kiwi-green to-[oklch(50%_0.15_165)] p-12 flex flex-col justify-between text-white">
+        <div className="bg-gradient-to-br from-kiwi-green to-[oklch(50%_0.15_165)] p-6 sm:p-8 md:p-12 flex flex-col justify-between text-white gap-6 md:gap-0">
           <div>
-            <div className="font-heading font-extrabold text-2xl mb-2">KiwiDrive</div>
+            <div className="font-heading font-extrabold text-xl md:text-2xl mb-2">KiwiDrive</div>
             <p className="text-sm opacity-85 leading-relaxed max-w-[260px]">
               Ace your learner licence theory test. Earn XP, keep your streak alive, and climb the leaderboard.
             </p>
           </div>
-          <div className="bg-white/12 rounded-2xl p-5 backdrop-blur-[2px]">
+          <div className="bg-white/12 rounded-2xl p-4 md:p-5 backdrop-blur-[2px]">
             <div className="font-heading font-bold text-sm mb-2.5">Why sign up?</div>
             <div className="flex flex-col gap-2 text-[13px] opacity-90">
               <div>• Save XP, levels &amp; streaks</div>
@@ -98,7 +98,7 @@ export default function AuthPage() {
           </div>
         </div>
 
-        <div className="p-12">
+        <div className="p-6 sm:p-8 md:p-12">
           <div className="flex gap-1.5 bg-cream rounded-2xl p-1 mb-7">
             <button
               onClick={() => switchMode('login')}
