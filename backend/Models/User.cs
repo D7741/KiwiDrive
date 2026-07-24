@@ -16,7 +16,7 @@ public class User
     public DateTime LastLoginDate { get; set; } = DateTime.UtcNow;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public string Role { get; set; } = "User"; // "Admin"
-    
+
     // Navigation properties
     public ICollection<UserProgress> UserProgresses { get; set; } = new List<UserProgress>();
     public ICollection<UserAchievement> UserAchievements { get; set; } = new List<UserAchievement>();

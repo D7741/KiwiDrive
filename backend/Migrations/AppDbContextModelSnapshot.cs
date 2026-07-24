@@ -40,7 +40,7 @@ namespace KiwiDrive.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Achievements");
+                    b.ToTable("Achievements", (string)null);
 
                     b.HasData(
                         new
@@ -109,7 +109,7 @@ namespace KiwiDrive.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -191,7 +191,7 @@ namespace KiwiDrive.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Questions", (string)null);
                 });
 
             modelBuilder.Entity("KiwiDrive.Models.User", b =>
@@ -242,7 +242,7 @@ namespace KiwiDrive.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("KiwiDrive.Models.UserAchievement", b =>
@@ -266,7 +266,7 @@ namespace KiwiDrive.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserAchievements");
+                    b.ToTable("UserAchievements", (string)null);
                 });
 
             modelBuilder.Entity("KiwiDrive.Models.UserProgress", b =>
@@ -293,7 +293,7 @@ namespace KiwiDrive.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserProgresses");
+                    b.ToTable("UserProgresses", (string)null);
                 });
 
             modelBuilder.Entity("KiwiDrive.Models.Question", b =>
