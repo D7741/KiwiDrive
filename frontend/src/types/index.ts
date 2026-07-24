@@ -51,6 +51,15 @@ export interface ApiError {
   message: string
 }
 
+export interface CategoryStat {
+  categoryId: number
+  categoryName: string
+  progress: number
+  accuracy: number
+  totalQuestions: number
+  answeredQuestions: number
+}
+
 export interface LeaderboardEntry {
   id: number
   rank: number

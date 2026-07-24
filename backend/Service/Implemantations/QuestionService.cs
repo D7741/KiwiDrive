@@ -10,12 +10,18 @@ namespace KiwiDrive.Services.Implementations
         private readonly IQuestionRepository _questionRepository;
         private readonly IAchievementRepository _achievementRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IUserProgressRepository _userProgressRepository;
 
-        public QuestionService(IQuestionRepository questionRepository, IAchievementRepository achievementRepository, IUserRepository userRepository)
+        public QuestionService(
+            IQuestionRepository questionRepository,
+            IAchievementRepository achievementRepository,
+            IUserRepository userRepository,
+            IUserProgressRepository userProgressRepository)
         {
             _questionRepository = questionRepository;
             _achievementRepository = achievementRepository;
             _userRepository = userRepository;
+            _userProgressRepository = userProgressRepository;
 
         }
 
@@ -83,6 +89,8 @@ namespace KiwiDrive.Services.Implementations
                 question.CorrectAnswer.Trim(),
                 dto.Answer.Trim(),
                 StringComparison.OrdinalIgnoreCase);
+
+            await _userProgressRepository.RecordAnswerAsync(userId, question.CategoryId, isCorrect);
 
             int xpEarned = 0;
             if (isCorrect)

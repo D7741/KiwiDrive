@@ -4,7 +4,7 @@ import { NavBar } from './ui'
 import { useAuthStore } from '../store/authStore'
 
 export default function Layout() {
-  const { user, isGuest, isAdmin } = useAuthStore()
+  const { user, isAdmin } = useAuthStore()
 
   return (
     <div>

@@ -1,30 +1,31 @@
 // src/pages/DashboardPage.tsx
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, XPBar, StreakFlame } from '../components/ui'
 import { useAuthStore } from '../store/authStore'
 import * as authApi from '../api/auth'
+import * as dashboardApi from '../api/dashboard'
+import type { CategoryStat } from '../types'
 
-// TODO: replace with real API data once the category-progress endpoint exists
-const CATEGORIES = [
-  { name: 'Road Signs', progress: 45, color: 'bg-sky-blue' },
-  { name: 'Speed Limits', progress: 90, color: 'bg-alert-red' },
-  { name: 'Give Way Rules', progress: 30, color: 'bg-kiwifruit-orange' },
-  { name: 'Parking', progress: 70, color: 'bg-kiwi-green' },
-  { name: 'Alcohol & Drugs', progress: 15, color: 'bg-[oklch(70%_0.14_300)]' },
-  { name: 'Night Driving', progress: 55, color: 'bg-[oklch(38%_0.12_270)]' },
-]
+// Order and colors are purely a frontend display concern — the backend only
+// returns category name + numbers.
+const CATEGORY_ORDER = ['Road Signs', 'Speed Limits', 'Give Way Rules', 'Parking', 'Alcohol & Drugs', 'Night Driving']
 
-// TODO: replace with real accuracy data once the endpoint exists
-const ACCURACY = [
-  { name: 'Road Rules', value: 88 },
-  { name: 'Road Signs', value: 72 },
-  { name: 'Speed Limits', value: 95 },
-  { name: 'Alcohol & Drugs', value: 60 },
-]
+const CATEGORY_COLORS: Record<string, string> = {
+  'Road Signs': 'bg-sky-blue',
+  'Speed Limits': 'bg-alert-red',
+  'Give Way Rules': 'bg-kiwifruit-orange',
+  'Parking': 'bg-kiwi-green',
+  'Alcohol & Drugs': 'bg-[oklch(70%_0.14_300)]',
+  'Night Driving': 'bg-[oklch(38%_0.12_270)]',
+}
 
 export default function DashboardPage() {
   const { user, isGuest, token, login: _login } = useAuthStore()
+
+  const [stats, setStats] = useState<CategoryStat[] | null>(null)
+  const [statsLoading, setStatsLoading] = useState(!isGuest)
+  const [statsError, setStatsError] = useState('')
 
   // Guest mode has no user object; for logged-in users whose store lost the
   // cached user (e.g. after a page refresh), fetch it once here
@@ -38,11 +39,24 @@ export default function DashboardPage() {
     }
   }, [user, isGuest, token])
 
+  // Guest progress isn't persisted anywhere, so there's nothing to fetch
+  useEffect(() => {
+    if (isGuest) return
+    dashboardApi.getCategoryStats()
+      .then(setStats)
+      .catch(() => setStatsError('Could not load your category progress.'))
+      .finally(() => setStatsLoading(false))
+  }, [isGuest])
+
   const displayName = isGuest ? 'Guest' : user?.username ?? '...'
   const level = user?.level ?? 1
   const xp = user?.xp ?? 0
   const streak = user?.streak ?? 0
   const xpForNextLevel = level * 500 // TODO: replace with real level-up formula once defined by backend
+
+  const orderedStats = CATEGORY_ORDER
+    .map((name) => stats?.find((s) => s.categoryName === name))
+    .filter((s): s is CategoryStat => s != null)
 
   return (
     <div className="max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-9 pb-24">
@@ -95,37 +109,60 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5">
         <div>
           <h2 className="font-heading font-bold text-lg text-ink mb-3.5">Practice a category</h2>
-          <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
-            {CATEGORIES.map((cat) => (
-              <Link key={cat.name} to={`/quiz?category=${encodeURIComponent(cat.name)}`} className="no-underline">
-                <Card padding="sm" className="flex flex-col gap-2 hover:shadow-[0_4px_0_var(--color-border-subtle)] transition-shadow">
-                  <div className={`w-7 h-7 rounded-[9px] ${cat.color}`} />
-                  <div className="font-heading font-bold text-sm text-ink">{cat.name}</div>
-                  <div className="w-full h-1.5 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden">
-                    <div className={`h-full rounded-full ${cat.color}`} style={{ width: `${cat.progress}%` }} />
-                  </div>
-                  <div className="text-[11.5px] text-ink-light font-semibold">{cat.progress}% complete</div>
-                </Card>
-              </Link>
-            ))}
-          </div>
+          {isGuest ? (
+            <Card className="text-sm text-ink-muted">
+              Sign up to track your progress across categories.
+            </Card>
+          ) : statsLoading ? (
+            <div className="text-sm text-ink-muted">Loading category progress...</div>
+          ) : statsError ? (
+            <div className="text-sm text-alert-red">{statsError}</div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
+              {orderedStats.map((cat) => (
+                <Link key={cat.categoryId} to={`/quiz?category=${encodeURIComponent(cat.categoryName)}`} className="no-underline">
+                  <Card padding="sm" className="flex flex-col gap-2 hover:shadow-[0_4px_0_var(--color-border-subtle)] transition-shadow">
+                    <div className={`w-7 h-7 rounded-[9px] ${CATEGORY_COLORS[cat.categoryName] ?? 'bg-kiwi-green'}`} />
+                    <div className="font-heading font-bold text-sm text-ink">{cat.categoryName}</div>
+                    <div className="w-full h-1.5 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${CATEGORY_COLORS[cat.categoryName] ?? 'bg-kiwi-green'}`}
+                        style={{ width: `${cat.progress}%` }}
+                      />
+                    </div>
+                    <div className="text-[11.5px] text-ink-light font-semibold">{cat.progress}% complete</div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
         <div>
           <h2 className="font-heading font-bold text-lg text-ink mb-3.5">Accuracy by category</h2>
-          <Card className="flex flex-col gap-3">
-            {ACCURACY.map((a) => (
-              <div key={a.name}>
-                <div className="flex justify-between text-xs font-semibold text-[oklch(35%_0.02_260)] mb-1">
-                  <span>{a.name}</span>
-                  <span>{a.value}%</span>
+          {isGuest ? (
+            <Card className="text-sm text-ink-muted">
+              Sign up to see your accuracy stats.
+            </Card>
+          ) : statsLoading ? (
+            <Card className="text-sm text-ink-muted">Loading...</Card>
+          ) : statsError ? (
+            <Card className="text-sm text-alert-red">{statsError}</Card>
+          ) : (
+            <Card className="flex flex-col gap-3">
+              {orderedStats.map((cat) => (
+                <div key={cat.categoryId}>
+                  <div className="flex justify-between text-xs font-semibold text-[oklch(35%_0.02_260)] mb-1">
+                    <span>{cat.categoryName}</span>
+                    <span>{cat.accuracy}%</span>
+                  </div>
+                  <div className="w-full h-2 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden">
+                    <div className="h-full rounded-full bg-sky-blue" style={{ width: `${cat.accuracy}%` }} />
+                  </div>
                 </div>
-                <div className="w-full h-2 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden">
-                  <div className="h-full rounded-full bg-sky-blue" style={{ width: `${a.value}%` }} />
-                </div>
-              </div>
-            ))}
-          </Card>
+              ))}
+            </Card>
+          )}
         </div>
       </div>
     </div>
