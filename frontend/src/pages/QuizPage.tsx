@@ -106,11 +106,11 @@ export default function QuizPage() {
   // ---- Select Phase ----
   if (phase === 'select') {
     return (
-      <div className="max-w-[760px] mx-auto px-8 py-12">
-        <h1 className="font-heading font-extrabold text-2xl text-ink mb-2">Pick a category</h1>
+      <div className="max-w-[760px] mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
+        <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-ink mb-2">Pick a category</h1>
         <p className="text-sm text-ink-muted mb-7">Choose a topic to start a {QUIZ_LENGTH}-question practice quiz.</p>
         {error && <div className="text-alert-red text-sm mb-4">{error}</div>}
-        <div className="grid grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.name}
@@ -139,14 +139,14 @@ export default function QuizPage() {
     const selectedIndex = selectedKey ? OPTION_KEYS.indexOf(selectedKey) : null
 
     return (
-      <div className="max-w-[760px] mx-auto px-8 py-10">
-        <div className="flex items-center justify-between mb-5">
-          <div className="font-heading font-bold text-sm text-ink-muted">{category}</div>
-          <div className="text-[13px] font-bold text-[oklch(45%_0.02_260)]">
+      <div className="max-w-[760px] mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-10">
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <div className="font-heading font-bold text-sm text-ink-muted truncate">{category}</div>
+          <div className="text-[13px] font-bold text-[oklch(45%_0.02_260)] whitespace-nowrap shrink-0">
             Question {qIndex + 1} of {quizQuestions.length}
           </div>
         </div>
-        <div className="w-full h-2.5 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden mb-8">
+        <div className="w-full h-2.5 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden mb-7 md:mb-8">
           <div
             className="h-full rounded-full bg-kiwi-green transition-[width] duration-400"
             style={{ width: `${qPct}%` }}
@@ -169,13 +169,13 @@ export default function QuizPage() {
 
         <div className="flex justify-center mt-6">
           {result ? (
-            <Button variant="primary" onClick={handleNext}>
+            <Button variant="primary" onClick={handleNext} className="w-full sm:w-auto">
               {qIndex < quizQuestions.length - 1 ? 'Next Question' : 'See Results'}
             </Button>
           ) : (
             <button
               disabled
-              className="font-heading font-bold text-base text-[oklch(70%_0.01_95)] bg-[oklch(90%_0.01_95)] border-none rounded-2xl px-10 py-3.5 cursor-not-allowed"
+              className="w-full sm:w-auto font-heading font-bold text-base text-[oklch(70%_0.01_95)] bg-[oklch(90%_0.01_95)] border-none rounded-2xl px-10 py-3.5 cursor-not-allowed"
             >
               {loading ? 'Checking...' : 'Next Question'}
             </button>
@@ -189,19 +189,19 @@ export default function QuizPage() {
   if (phase === 'summary') {
     const isPerfect = correctCount === quizQuestions.length
     return (
-      <div className="fixed inset-0 bg-[oklch(20%_0.02_260/0.55)] flex items-center justify-center z-10">
-        <Card padding="lg" className="max-w-[420px] w-[90%] text-center">
-          <div className="font-heading font-extrabold text-2xl text-ink mb-1.5">Quiz complete!</div>
+      <div className="fixed inset-0 bg-[oklch(20%_0.02_260/0.55)] flex items-center justify-center z-10 p-4">
+        <Card padding="lg" className="max-w-[420px] w-full sm:w-[90%] text-center">
+          <div className="font-heading font-extrabold text-xl sm:text-2xl text-ink mb-1.5">Quiz complete!</div>
           <div className="text-sm text-ink-muted mb-6">{category}</div>
-          <div className="flex justify-center gap-7 mb-6">
+          <div className="flex justify-center gap-5 sm:gap-7 mb-6">
             <div>
-              <div className="font-heading font-extrabold text-[28px] text-kiwi-green">
+              <div className="font-heading font-extrabold text-2xl sm:text-[28px] text-kiwi-green">
                 {correctCount}/{quizQuestions.length}
               </div>
               <div className="text-xs text-ink-light font-semibold">Correct</div>
             </div>
             <div>
-              <div className="font-heading font-extrabold text-[28px] text-sky-blue">+{xpEarned}</div>
+              <div className="font-heading font-extrabold text-2xl sm:text-[28px] text-sky-blue">+{xpEarned}</div>
               <div className="text-xs text-ink-light font-semibold">XP earned</div>
             </div>
           </div>
