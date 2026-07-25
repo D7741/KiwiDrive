@@ -80,6 +80,14 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
     await QuestionSeeder.SeedAsync(db);
+
+    // TEMPORARY: promote a specific account to Admin. Remove after running once.
+    var adminUser = await db.Users.FirstOrDefaultAsync(u => u.Email == "username@example.com");
+    if (adminUser != null && adminUser.Role != "Admin")
+    {
+        adminUser.Role = "Admin";
+        await db.SaveChangesAsync();
+    }
 }
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors("AllowFrontend");
