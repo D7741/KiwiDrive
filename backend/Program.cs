@@ -29,7 +29,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(
+            "http://localhost:5173",
+            "https://happy-dune-06daefb00.7.azurestaticapps.net"
+            )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
