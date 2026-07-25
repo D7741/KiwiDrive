@@ -57,8 +57,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Register DbContext
+var isAzure = Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID") != null;
+var dbPath = isAzure
+    ? Path.Combine(Environment.GetEnvironmentVariable("HOME")!, "data", "kiwidrive.db")
+    : "kiwidrive.db";
+
+var dbDirectory = Path.GetDirectoryName(dbPath);
+if (!string.IsNullOrEmpty(dbDirectory))
+{
+    Directory.CreateDirectory(dbDirectory);
+}
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=kiwidrive.db"));
+    options.UseSqlite($"Data Source={dbPath}"));
 
 var app = builder.Build();
 
