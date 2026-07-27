@@ -73,20 +73,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
-// temp data clean
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-    await QuestionSeeder.SeedAsync(db);
-
-    // TEMPORARY: wipe all test accounts except the ones I want to keep for the demo video.
-    // Remove this block after it runs once.
-    var emailsToKeep = new[] { "username@example.com" };
-    var usersToDelete = db.Users.Where(u => !emailsToKeep.Contains(u.Email)).ToList();
-    db.Users.RemoveRange(usersToDelete);
-    await db.SaveChangesAsync();
-}
 
 // Auto generate migrate and seed questions
 using (var scope = app.Services.CreateScope())
