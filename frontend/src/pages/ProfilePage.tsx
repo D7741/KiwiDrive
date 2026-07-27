@@ -8,7 +8,7 @@ import * as authApi from '../api/auth'
 
 export default function ProfilePage() {
   const navigate = useNavigate()
-  const { user, logout } = useAuthStore()
+  const { user, isGuest, logout } = useAuthStore()
   const { isDark, toggleDark } = useThemeStore()
 
   const [username, setUsername] = useState(user?.username ?? '')
@@ -20,6 +20,9 @@ export default function ProfilePage() {
   const [newPassword, setNewPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [passwordSaved, setPasswordSaved] = useState(false)
+
+  const [deleting, setDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState('')
 
   const handleSaveProfile = async () => {
     setNameError('')
@@ -53,6 +56,22 @@ export default function ProfilePage() {
   const handleLogout = () => {
     logout()
     navigate('/auth')
+  }
+
+  const handleDeleteAccount = async () => {
+    if (!confirm('Delete your account? This cannot be undone — your XP, streak and achievements will be permanently lost.')) {
+      return
+    }
+    setDeleteError('')
+    setDeleting(true)
+    try {
+      await authApi.deleteProfile()
+      logout()
+      navigate('/auth')
+    } catch (err) {
+      setDeleteError(err instanceof Error ? err.message : 'Could not delete account.')
+      setDeleting(false)
+    }
   }
 
   return (
@@ -130,7 +149,7 @@ export default function ProfilePage() {
         </button>
       </Card>
 
-      <div className="text-center sm:text-right">
+      <div className="text-center sm:text-right mb-5">
         <button
           onClick={handleLogout}
           className="w-full sm:w-auto font-heading font-bold text-sm text-alert-red border-[1.5px] border-[oklch(85%_0.06_25)] rounded-xl px-5 py-2.5 bg-transparent cursor-pointer"
@@ -138,6 +157,27 @@ export default function ProfilePage() {
           Log out
         </button>
       </div>
+
+      {!isGuest && (
+        <Card className="border-[1.5px] border-alert-red">
+          <h2 className="font-heading font-bold text-base text-alert-red mb-1">Danger zone</h2>
+          <p className="text-xs text-ink-light mb-4">
+            Permanently delete your account. This cannot be undone — your XP, streak and achievements will be lost.
+          </p>
+          {deleteError && (
+            <div className="bg-alert-red-light text-alert-red text-xs font-semibold px-3 py-2.5 rounded-xl mb-3">
+              {deleteError}
+            </div>
+          )}
+          <button
+            onClick={handleDeleteAccount}
+            disabled={deleting}
+            className="w-full sm:w-auto font-heading font-bold text-sm text-white bg-alert-red rounded-xl px-5 py-2.5 border-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {deleting ? 'Deleting...' : 'Delete account'}
+          </button>
+        </Card>
+      )}
     </div>
   )
 }
