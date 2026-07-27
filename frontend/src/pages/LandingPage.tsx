@@ -47,7 +47,7 @@ export default function LandingPage() {
               to="/auth"
               className="font-heading font-bold text-base text-ink-muted bg-transparent border-2 border-border-subtle px-6.5 py-3 rounded-2xl no-underline text-center"
             >
-              Try a Quiz
+              Register Account
             </Link>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-ink-muted">
