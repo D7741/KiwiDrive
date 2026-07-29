@@ -30,10 +30,10 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
     return undefined as T
   }
 
-  const data = await response.json().catch(() => null)
+  const data = await response.json().catch(() => ({}))
 
   if (!response.ok) {
-    const message = data?.message || `Request failed with status ${response.status}`
+    const message = data?.message || data?.error || `Request failed with status ${response.status}`    
     throw new Error(message)
   }
 

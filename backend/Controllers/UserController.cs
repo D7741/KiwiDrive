@@ -102,7 +102,8 @@ namespace KiwiDrive.Controllers
         }
 
         // GET /api/users
-        // Temp test purpose!
+        // Test purpose!
+        [Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsers()
         {
