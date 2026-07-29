@@ -69,11 +69,11 @@ specs/
 
 ### Phase 4 - Frontend Development
 - Set up React + TypeScript with Vite
-- Configured React Router v6 with protected routes
+- Configured React Router v7 with protected routes
 - Implemented Zustand stores (auth, quiz, theme)
 - Built all 7 pages (Landing, Auth, Dashboard, Quiz, Leaderboard, Achievements, Profile, Admin)
 - Implemented dark/light mode with Night Driving mode twist
-- Connected frontend to backend via Axios
+- Connected frontend to backend via fetch-based api/client.ts
 
 ### Phase 5 - Testing & Deployment
 - Deployed backend to Azure App Service
