@@ -103,7 +103,7 @@ namespace KiwiDrive.Controllers
 
         // GET /api/users
         // Test purpose!
-        [Authorize]
+        //[Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsers()
         {

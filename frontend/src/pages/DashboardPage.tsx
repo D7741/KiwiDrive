@@ -124,7 +124,7 @@ export default function DashboardPage() {
                   <Card padding="sm" className="flex flex-col gap-2 hover:shadow-[0_4px_0_var(--color-border-subtle)] transition-shadow">
                     <div className={`w-7 h-7 rounded-[9px] ${CATEGORY_COLORS[cat.categoryName] ?? 'bg-kiwi-green'}`} />
                     <div className="font-heading font-bold text-sm text-ink">{cat.categoryName}</div>
-                    <div className="w-full h-1.5 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden">
+                    <div className="w-full h-1.5 rounded-full bg-border-subtle overflow-hidden">
                       <div
                         className={`h-full rounded-full ${CATEGORY_COLORS[cat.categoryName] ?? 'bg-kiwi-green'}`}
                         style={{ width: `${cat.progress}%` }}
@@ -152,11 +152,11 @@ export default function DashboardPage() {
             <Card className="flex flex-col gap-3">
               {orderedStats.map((cat) => (
                 <div key={cat.categoryId}>
-                  <div className="flex justify-between text-xs font-semibold text-[oklch(35%_0.02_260)] mb-1">
+                  <div className="flex justify-between text-xs font-semibold text-ink mb-1">
                     <span>{cat.categoryName}</span>
                     <span>{cat.accuracy}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-[oklch(92%_0.015_95)] overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-border-subtle overflow-hidden">
                     <div className="h-full rounded-full bg-sky-blue" style={{ width: `${cat.accuracy}%` }} />
                   </div>
                 </div>
