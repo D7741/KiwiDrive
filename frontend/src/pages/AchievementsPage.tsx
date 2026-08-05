@@ -1,44 +1,69 @@
 // src/pages/AchievementsPage.tsx
 import { useEffect, useState } from 'react'
-import { Badge } from '../components/ui'
+import { Link } from 'react-router-dom'
+import { Badge, Card, Button } from '../components/ui'
+import { useAuthStore } from '../store/authStore'
 import * as achievementsApi from '../api/achievements'
 import type { Achievement } from '../types'
 
 export default function AchievementsPage() {
+  const { isGuest } = useAuthStore()
   const [achievements, setAchievements] = useState<Achievement[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!isGuest)
   const [error, setError] = useState('')
 
   useEffect(() => {
+    if (isGuest) return
     achievementsApi
       .getUserAchievements()
       .then(setAchievements)
       .catch(() => setError('Could not load achievements.'))
       .finally(() => setLoading(false))
-  }, [])
+  }, [isGuest])
+
+  if (isGuest) {
+    return (
+      <div className="max-w-[900px] mx-auto px-8 py-10 pb-24">
+        <h1 className="font-heading font-extrabold text-2xl text-ink mb-1">Achievements</h1>
+        <p className="text-sm text-ink-muted mb-7">Track your badges as you practice.</p>
+        <Card className="flex flex-col items-center text-center gap-4 py-10">
+          <div className="font-heading font-bold text-base text-ink">
+            Sign up to start unlocking achievements
+          </div>
+          <p className="text-sm text-ink-muted max-w-[360px]">
+            Achievements are saved to your account so you can track your progress
+            over time. Create a free account or log in to get started.
+          </p>
+          <Link to="/auth">
+            <Button variant="primary">Sign Up / Log In</Button>
+          </Link>
+        </Card>
+      </div>
+    )
+  }
 
   if (loading) {
-    return <div className="max-w-[900px] mx-auto px-4 sm:px-6 md:px-8 py-10 text-ink-muted">Loading achievements...</div>
+    return <div className="max-w-[900px] mx-auto px-8 py-10 text-ink-muted">Loading achievements...</div>
   }
 
   if (error) {
-    return <div className="max-w-[900px] mx-auto px-4 sm:px-6 md:px-8 py-10 text-alert-red">{error}</div>
+    return <div className="max-w-[900px] mx-auto px-8 py-10 text-alert-red">{error}</div>
   }
 
   const unlockedCount = achievements.filter((a) => a.isUnlocked).length
 
   return (
-    <div className="max-w-[900px] mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-10 pb-24">
-      <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-ink mb-1">Achievements</h1>
+    <div className="max-w-[900px] mx-auto px-8 py-10 pb-24">
+      <h1 className="font-heading font-extrabold text-2xl text-ink mb-1">Achievements</h1>
       <p className="text-sm text-ink-muted mb-7">
         {unlockedCount} of {achievements.length} badges unlocked
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {achievements.map((a) => (
           <div
             key={a.id}
-            className="bg-card rounded-[20px] p-4 sm:p-5.5 flex flex-col items-center text-center gap-2 sm:gap-2.5 shadow-[0_2px_0_var(--color-border-subtle)]"
+            className="bg-card rounded-[20px] p-5.5 flex flex-col items-center text-center gap-2.5 shadow-[0_2px_0_var(--color-border-subtle)]"
           >
             <Badge label={a.name} unlocked={a.isUnlocked} />
             <div className="text-xs text-ink-light leading-relaxed">{a.description}</div>
