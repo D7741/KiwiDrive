@@ -6,6 +6,7 @@ import * as questionsApi from '../api/questions'
 import type { Question, AnswerResult } from '../types'
 import { getProfile } from '../api/auth'
 import { useAuthStore } from '../store/authStore'
+import { useThemeStore } from '../store/themeStore'
 
 const CATEGORIES = [
   { name: 'Road Signs', color: 'bg-sky-blue' },
@@ -22,6 +23,7 @@ const OPTION_KEYS = ['A', 'B', 'C', 'D'] as const
 type Phase = 'select' | 'quiz' | 'summary'
 
 export default function QuizPage() {
+  const { isDark } = useThemeStore()
   const [searchParams] = useSearchParams()
   const [phase, setPhase] = useState<Phase>('select')
   const [category, setCategory] = useState<string | null>(null)
@@ -111,16 +113,33 @@ export default function QuizPage() {
         <p className="text-sm text-ink-muted mb-7">Choose a topic to start a {QUIZ_LENGTH}-question practice quiz.</p>
         {error && <div className="text-alert-red text-sm mb-4">{error}</div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.name}
-              onClick={() => startQuiz(cat.name)}
-              className="text-left cursor-pointer bg-card border-none rounded-2xl p-5 flex flex-col gap-2 shadow-[0_2px_0_var(--color-border-subtle)] hover:shadow-[0_4px_0_var(--color-border-subtle)]"
-            >
-              <div className={`w-7 h-7 rounded-[9px] ${cat.color}`} />
-              <div className="font-heading font-bold text-[15px] text-ink">{cat.name}</div>
-            </button>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const isFeaturedTonight = isDark && cat.name === 'Night Driving'
+            return (
+              <button
+                key={cat.name}
+                onClick={() => startQuiz(cat.name)}
+                className={`relative text-left cursor-pointer border-none rounded-2xl p-5 flex flex-col gap-2 transition-shadow ${
+                  isFeaturedTonight
+                    ? 'bg-[oklch(24%_0.05_270)] shadow-[0_0_0_2px_oklch(60%_0.14_270),0_0_16px_oklch(55%_0.16_270_/_0.5)] hover:shadow-[0_0_0_2px_oklch(65%_0.16_270),0_0_20px_oklch(55%_0.18_270_/_0.65)]'
+                    : 'bg-card shadow-[0_2px_0_var(--color-border-subtle)] hover:shadow-[0_4px_0_var(--color-border-subtle)]'
+                }`}
+              >
+                {isFeaturedTonight && (
+                  <span className="absolute -top-2 -right-2 text-[10px] font-heading font-bold px-2 py-0.5 rounded-full bg-[oklch(60%_0.14_270)] text-white shadow-sm">
+                    Featured Tonight
+                  </span>
+                )}
+                <div className="flex items-center gap-2">
+                  <div className={`w-7 h-7 rounded-[9px] ${cat.color}`} />
+                  {isFeaturedTonight && <span className="text-base leading-none">🌙</span>}
+                </div>
+                <div className={`font-heading font-bold text-[15px] ${isFeaturedTonight ? 'text-white' : 'text-ink'}`}>
+                  {cat.name}
+                </div>
+              </button>
+            )
+          })}
         </div>
       </div>
     )
