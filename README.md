@@ -28,6 +28,14 @@ Both are deployed continuously from `main` via GitHub Actions - the badges above
 
 ---
 
+## Video
+
+| | Link |
+|---|---|
+| **Demo Video** | [Google Drive](https://drive.google.com/drive/folders/1hltOuQPF_N-BmCpsbyaisUsQ6xdnA4v1?usp=sharing) |
+
+---
+
 ## Introduction
 
 KiwiDrive is a full-stack, gamified web application that helps New Zealanders study for their learner licence theory test. Instead of a static list of practice questions, KiwiDrive wraps the NZ Road Code in a game loop that gives you a reason to come back tomorrow:
